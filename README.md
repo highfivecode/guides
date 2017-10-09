@@ -1,7 +1,7 @@
 # guides
 Helpful guides
 
-### Django Crash Course
+### Django
   * [Quick Reference Sheet](./index/DjangoCrashCourse.md) 
 
 ### Using The Terminal
