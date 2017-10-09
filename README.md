@@ -1,5 +1,4 @@
-# guides
-Helpful guides
+# Guides
 
 ### Django
   * [Quick Reference Sheet](./index/DjangoCrashCourse.md)
