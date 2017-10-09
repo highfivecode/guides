@@ -1,6 +1,8 @@
 [Back to Guides](../README.md)
 # Useful Bash Commands
 
-### LS
+### DIR
   - Lists information about the files in the current directory
-  - ls -l (use a long listing format)
+### CLS
+  - Clears the command prompt screen
+
