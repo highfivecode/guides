@@ -2,7 +2,8 @@
 Helpful guides
 
 ### Django
-  * [Quick Reference Sheet](./index/DjangoCrashCourse.md) 
+  * [Quick Reference Sheet](./index/DjangoCrashCourse.md)
+  * [Virtual Environment Cheat Sheet](./index/VirtualEnvCheatSheet.md)
 
 ### Using The Terminal
   * [What Is The Terminal?](./index/WhatIsTheTerminal.md)
