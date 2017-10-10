@@ -53,7 +53,7 @@ $ virtualenv myFirstVirtualEnvironment!
 
 It may take a minute. All that stuff you're seeing on your terminal is the new virtualenv being created in a directory corresponding to the name of the virtual environment. You now have your own isolated python install. 
 
-### OH YEAH! How do I use it?
+### OHHHHHHH YEAHHHHHH! How do I use it?
 
 You need to 'activate' it. In the directory that was just created there is a 'bin' directory. In that directory there is a script called activate. We need to use that. All we do is:
 
