@@ -48,7 +48,7 @@ You guess right! It's simple to do just CD (remember that means Change Directory
 
 ```shell
 $ cd ~/Desktop/workspace/venvs
-$ virtualenv myFirstVirtualEnvironment!
+$ virtualenv myFirstVirtualEnvironment
 ```
 
 It may take a minute. All that stuff you're seeing on your terminal is the new virtualenv being created in a directory corresponding to the name of the virtual environment. You now have your own isolated python install. 
