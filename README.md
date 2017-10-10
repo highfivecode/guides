@@ -9,3 +9,5 @@
   * [Useful Bash (LINUX/MAC) Commands](./index/UsefulBashCommands.md)
   * [Useful Command Prompt (WINDOWS) Commands](./index/UsefulCommandPromptCommands.md)
 
+### General Resources
+  * [Recommended Text Editors](./index/RecommendedTextEditors.md)
