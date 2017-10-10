@@ -94,3 +94,13 @@ $ python manage.py runserver
 This starts a lightweight development Web server on the local machine. By default, the server runs on port 8000 on the IP address 127.0.0.1. Open a browser and type in '127.0.0.1:8000' or 'localhost:8000'. You should your first django powered web page!
 
 Press ctrl + c to quit the server.
+
+### Create a Super User and Log In to the Admin Panel
+
+Super users are users who are granted all privileges by default. They can create, read (view), update, or delete any entries from the database by using the admin panel. Creating them is done through manage.py and uses the createsuperuser command.
+
+```shell
+$ python manage.py createsuperuser
+```
+
+You will be prompted for a username, email (optional), and password. Once the super user is created you can visit the admin panel by visiting '127.0.0.1:8000/admin' in your web browser. If you decided to run your server on a different port than the default 8000, make sure your url reflects that.
