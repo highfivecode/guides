@@ -80,7 +80,7 @@ Migrations are Django's way of updating your database. We will get more familiar
 $ python manage.py migrate
 ```
 
-This command will create a file called db.sqlite3 which is what we will use for our database. See more on migrations [here](https://docs.djangoproject.com/en/1.11/topics/migrations/)
+This command will create a file called db.sqlite3 which is what we will use for our database. See more on migrations [here](https://docs.djangoproject.com/en/1.11/topics/migrations/).
 
 ### Launch Your Server
 
