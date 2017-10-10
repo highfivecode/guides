@@ -69,7 +69,7 @@ $ cd ~/Desktop/workspace/python/django
 ### Start Your First Project!
 
 ```shell
-$ django-admin startporject myFirstProject
+$ django-admin startproject myFirstProject
 ```
 
 ### Migrate your database
