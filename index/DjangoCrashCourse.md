@@ -325,7 +325,7 @@ The process is rather simple:
   ```html
    <head>
     <title>uStudy</title>
-    <link rel='stylesheet' href='{% static 'style.css' %}/>
+    <link rel='stylesheet' href="{% static 'style.css' %}" />
   </head>
  ```
   
