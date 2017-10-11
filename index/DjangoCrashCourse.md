@@ -204,6 +204,10 @@ def home(request):
 
 ### Django Template Language
 
+[Video for template variables and filters](https://https://youtu.be/K1pE0sh31Rs)
+[Video for template tags](https://youtu.be/zZsL-aSXNPw)
+
+
 Let's replace the the "Welcome to uStudy" H1 tag in the previous template with a template variable. This can be done using django's [templating language](https://docs.djangoproject.com/en/1.11/topics/templates/#the-django-template-language).
 
 ```html
