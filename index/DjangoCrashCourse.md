@@ -1,8 +1,11 @@
 [Back to Guides](../README.md)
 # Django Crash Course Quick Reference
 
+##### Django Documentation References
 [Django homepage](https://docs.djangoproject.com)  
-[Migrations](https://docs.djangoproject.com/en/1.11/topics/migrations/)
+[Migrations](https://docs.djangoproject.com/en/1.11/topics/migrations/)  
+[Templates](https://docs.djangoproject.com/en/1.11/topics/templates/)  
+[Template Language](https://docs.djangoproject.com/en/1.11/topics/templates/#the-django-template-language)
 
 ### Setup Workspace
 
@@ -128,6 +131,7 @@ You will be prompted for a username, email (optional), and password. Once the su
 
 Create a new file file in your projects package (the same directory the settings.py is in) called views.py. It should look like the following:
 
+**views.py**
 ```python
 from django.http import HttpResponse
 
@@ -139,6 +143,7 @@ Open your projects root_urlconf file (normally the urls.py file in the project p
 
 Add a new url to the url patterns matching with the first argument set to the string you wish the url to be. Make sure to import views as well, see below.
 
+**urls.py**
 ```python
 from django.conf.urls import url
 from django.contrib import admin
@@ -161,6 +166,7 @@ Templates allow us to minimize our code for new pages (by extending or inheritin
 
 In your root level directory (where manage.py is), create a new directory (use mkdir from the terminal) and call it templates. In templates, create a new bare bones HTML5 like so:
 
+**home.html**
 ```html
 <!DOCTYPE html>
 <html>
@@ -182,6 +188,7 @@ In settings.py, on line 59, change the value of the 'DIRS' keyword from [] to:
 
 Finally, change your previous Home view to the following:
 
+**views.py**
 ```python
 from django.shortcuts import render
 
@@ -193,5 +200,40 @@ def home(request):
     return render(request, 'home.html', context)
 ```
 
+### Django Template Language
 
+Let's replace the the "Welcome to uStudy" H1 tag in the previous template with a template variable. This can be done using django's [templating language](https://docs.djangoproject.com/en/1.11/topics/templates/#the-django-template-language).
 
+```html
+<h1>Welcome to uStudy</h1>
+```
+
+becomes....
+
+**home.html**
+```html
+<h1>{{ our_greeting }}</h1>
+```
+
+And the greeting variable is declared in the view (the home function in the views.py in this case) and passed to the template using the context, like so:
+
+**views.py**
+```python
+from django.shortcuts import render
+
+def home(request):
+    '''
+    Renders home page
+    '''
+    greeting = "uStudy - the best study site in the world!"
+     #a dictionary with the keyword 'our_greeting' mapping to the variable greeting define above
+    context = {'our_greeting':greeting}
+    return render(request, 'home.html', context)
+```
+
+Filters transform the values of variables and tag arguments, the use a "pipe" | with the variable on the left side of the pipe and the transformation argument on the right side of the pipe. Let's transform our greeting to titlecase, where the first letter of each word is capitalized.
+
+**home.html**
+```html
+<h1>{{ our_greeting|title }}</h1>
+```
