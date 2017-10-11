@@ -300,6 +300,7 @@ Now in the home.html template we will add template tags to 1. Check if the list 
 ```
 
 ### Configuring Static Files
+[watch video](https://youtu.be/daYncgqTg68)
 
 Websites generally need to serve additional files such as images, JavaScript, or CSS. In Django, we refer to these files as “static files”. (Yes, we copied that right from the [static files documentation](https://docs.djangoproject.com/en/1.11/howto/static-files/)). We are gonna to practice using static files by adding an external style sheet to our app.
 
