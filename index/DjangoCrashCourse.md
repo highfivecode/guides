@@ -11,9 +11,15 @@
   
 ## Table Of Contents
 
-1. [Static Files](#configuring-static-files)
+1. [Workspace Setup](#workspace-setup)
+2. [Activate Your Virtual Environment](#activate-your-virtual-environment)
+3. [Start Your First Project](#start-your-first-project)
+4. [Create a Super User and Log In to the Admin Panel](#create-a-super-user-and-log-in-to-the-admin-panel)
+5. [Create a home page](#create-a-home-page)
+6. [Django Templating Language](#django-templating-language)
+7. [Static Files](#configuring-static-files)
 
-### Setup Workspace
+### Workspace Setup
 
 [watch video](https://youtu.be/fGGDw5yRRXE)
 
@@ -76,24 +82,23 @@ To specify a specific django version, use the syntax below:
 (myFirstVirutalEnvironment) $ pip install django==1.10.5
 ```
 
-### CD Into Where You Want Your Project to Live
 
+### Start Your First Project!
 [watch video](https://youtu.be/fGGDw5yRRXE)
+
+First CD into where you want your project to live:
 
 ```shell
 $ cd ~/Desktop/workspace/python/django
 ```
 
-### Start Your First Project!
-
-[watch video](https://youtu.be/fGGDw5yRRXE)
+Then run the startproject command
 
 ```shell
 $ django-admin startproject myFirstProject
 ```
 
 ### Migrate your database
-
 [watch video](https://youtu.be/fGGDw5yRRXE)
 
 Migrations are Django's way of updating your database. We will get more familiar with them later. However right now we need to run a migration to build the initial database that django will use.
@@ -206,7 +211,7 @@ def home(request):
     return render(request, 'home.html', context)
 ```
 
-### Django Template Language
+### Django Templating Language
 
 [watch video for template variables and filters](https://https://youtu.be/K1pE0sh31Rs)  
 [watch video for template tags](https://youtu.be/zZsL-aSXNPw)
@@ -301,7 +306,7 @@ Now in the home.html template we will add template tags to 1. Check if the list 
 </html>
 ```
 
-### [Configuring Static Files]
+### Configuring Static Files
 
 Websites generally need to serve additional files such as images, JavaScript, or CSS. In Django, we refer to these files as “static files”. (Yes, we copied right from the [static files documentation](https://docs.djangoproject.com/en/1.11/howto/static-files/)). We are gonna to practice using static files by adding an external style sheet to our app.
 
