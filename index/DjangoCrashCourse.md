@@ -6,6 +6,8 @@
 [Migrations](https://docs.djangoproject.com/en/1.11/topics/migrations/)  
 [Templates](https://docs.djangoproject.com/en/1.11/topics/templates/)  
 [Template Language](https://docs.djangoproject.com/en/1.11/topics/templates/#the-django-template-language)
+  * [Templating Tags Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-tags)
+  * [Templating Filter Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-filters)
 
 ### Setup Workspace
 
@@ -217,8 +219,8 @@ becomes....
 
 And the greeting variable is declared in the view (the home function in the views.py in this case) and passed to the template using the context, like so:
 
-**views.py**
-```python
+
+```python views.py
 from django.shortcuts import render
 
 def home(request):
@@ -226,14 +228,15 @@ def home(request):
     Renders home page
     '''
     greeting = "uStudy - the best study site in the world!"
-     #a dictionary with the keyword 'our_greeting' mapping to the variable greeting define above
+    today = 'tuesday'
+    # a dictionary with a keyword 'our_greeting' mapping to the variable greeting defined above.
     context = {'our_greeting':greeting}
     return render(request, 'home.html', context)
 ```
 
-Filters transform the values of variables and tag arguments, the use a "pipe" | with the variable on the left side of the pipe and the transformation argument on the right side of the pipe. Let's transform our greeting to titlecase, where the first letter of each word is capitalized.
+Filters transform the values of variables and tag arguments, they use a "pipe" | with the variable on the left side of the pipe and the transformation argument on the right side of the pipe. Let's transform our greeting to titlecase, where the first letter of each word is capitalized.
 
 **home.html**
 ```html
-<h1>{{ our_greeting|title }}</h1>
+<h1>{{ our_greeting | title }}</h1>
 ```
