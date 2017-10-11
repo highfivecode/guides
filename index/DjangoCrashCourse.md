@@ -41,13 +41,11 @@
 ```
 
 ### Activate Your Virtual Environment
-
 [watch video](https://youtu.be/fGGDw5yRRXE)
 
 See the cheat sheet: [Virtual Environment Cheatsheet](./VirtualEnvCheatSheet.md)
 
 ### Install Django or Make Sure Django is Already Installed
-
 [watch video](https://youtu.be/fGGDw5yRRXE)
 
 Use pip freeze to check.
@@ -110,7 +108,6 @@ $ python manage.py migrate
 This command will create a file called db.sqlite3 which is what we will use for our database. See more on migrations [here](https://docs.djangoproject.com/en/1.11/topics/migrations/).
 
 ### Launch Your Server
-
 [watch video](https://youtu.be/fGGDw5yRRXE)
 
 Change directory into your projects root level directory. You will see a file called 'manage.py' there.
@@ -125,7 +122,6 @@ This starts a lightweight development Web server on the local machine. By defaul
 Press ctrl + c to quit the server.
 
 ### Create a Super User and Log In to the Admin Panel
-
 [watch video](https://youtu.be/89pwzSE5c0Q)
 
 Super users are users who are granted all privileges by default. They can create, read (view), update, or delete any entries from the database by using the admin panel. Creating them is done through manage.py and uses the createsuperuser command.
@@ -137,7 +133,6 @@ $ python manage.py createsuperuser
 You will be prompted for a username, email (optional), and password. Once the super user is created you can visit the admin panel by visiting '127.0.0.1:8000/admin' in your web browser. If you decided to run your server on a different port than the default 8000, make sure your url reflects that.
 
 ### Create a home page
-
 [watch video](https://youtu.be/Q_Q9umYQzf0)
 
 Create a new file file in your projects package (the same directory the settings.py is in) called views.py. It should look like the following:
@@ -170,7 +165,6 @@ urlpatterns = [
 Launch your server, navigate your browser to 'localhost:8000' and see the text from the home function displayed!
 
 ### Create a template
-
 [watch video](https://youtu.be/Y2s6qj0kfOA)
 
 Templates allow us to minimize our code for new pages (by extending or inheriting from other templates) and also use template code and template variables passed from the views.
@@ -212,7 +206,6 @@ def home(request):
 ```
 
 ### Django Templating Language
-
 [watch video for template variables and filters](https://https://youtu.be/K1pE0sh31Rs)  
 [watch video for template tags](https://youtu.be/zZsL-aSXNPw)
 
