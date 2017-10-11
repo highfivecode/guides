@@ -240,3 +240,51 @@ Filters transform the values of variables and tag arguments, they use a "pipe" |
 ```html
 <h1>{{ our_greeting | title }}</h1>
 ```
+
+Template tags allow us to control logic in the rendering process of the template. Here are a few example of where this is handy:
+  * Displaying a greeting only if a user is logged in
+  * Displaying a link to the admin panel if the user is a member of the staff
+  * Iterating over a list of items
+  * Extending templates so we don't need to rewrite all our HTML for every template
+  * Using csrf tokens with our forms to protect our site from cross site request forgery attacks.
+  
+Template tags end and close with a curly brace and a percentage sign: {% %}
+
+A common use is to check if a list exists and either display the list or display an error message if the list does not exists. Let's do this below.
+
+**views.py**
+```python views.py
+from django.shortcuts import render
+
+def home(request):
+    '''
+    Renders home page
+    '''
+    greeting = "uStudy - the best study site in the world!"
+    #first we will create a variable with the days of the week as a list
+    days_of_week = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'
+    #then we will add it to the template context
+    context = {'our_greeting':greeting, 'weekday_list':days_of_week}
+    return render(request, 'home.html', context)
+```
+
+Now in the home.html template we will add template tags to 1. Check if the list exists and then 2. Iterate over the list
+**home.html**
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>uStudy</title>
+  </head>
+  <body>
+    <div id="container">
+      <h1>{{ our_greeting | title }}</h1>
+      <ul>
+       {% if weekday_list %}
+           {% for day in weekday_list %}
+       {% endif %}
+      </ul>
+    </div>
+  </body>
+</html>
+```
