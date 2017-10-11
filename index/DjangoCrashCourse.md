@@ -278,12 +278,16 @@ Now in the home.html template we will add template tags to 1. Check if the list 
   </head>
   <body>
     <div id="container">
-      <h1>{{ our_greeting | title }}</h1>
-      <ul>
-       {% if weekday_list %}
-           {% for day in weekday_list %}
-       {% endif %}
-      </ul>
+      <h1>Welcome to {{ our_greeting | title }}!</h1>
+      {% if weekday_list %}
+        <ul>
+          {% for day in weekday_list %}
+            <li>{{ day|slice:":3" }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>Days of week is not defined.</p>
+      {% endif %}
     </div>
   </body>
 </html>
