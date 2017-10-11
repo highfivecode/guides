@@ -8,6 +8,10 @@
 [Template Language](https://docs.djangoproject.com/en/1.11/topics/templates/#the-django-template-language)
   * [Templating Tags Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-tags)
   * [Templating Filter Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-filters)
+  
+## Table Of Contents
+
+1. [Static Files](#configuring-static-files)
 
 ### Setup Workspace
 
@@ -297,7 +301,7 @@ Now in the home.html template we will add template tags to 1. Check if the list 
 </html>
 ```
 
-### Configuring Static Files
+### [Configuring Static Files]
 
 Websites generally need to serve additional files such as images, JavaScript, or CSS. In Django, we refer to these files as “static files”. (Yes, we copied right from the [static files documentation](https://docs.djangoproject.com/en/1.11/howto/static-files/)). We are gonna to practice using static files by adding an external style sheet to our app.
 
