@@ -296,3 +296,39 @@ Now in the home.html template we will add template tags to 1. Check if the list 
   </body>
 </html>
 ```
+
+### Configuring Static Files
+
+Websites generally need to serve additional files such as images, JavaScript, or CSS. In Django, we refer to these files as “static files”. (Yes, we copied right from the [static files documentation](https://docs.djangoproject.com/en/1.11/howto/static-files/)). We are gonna to practice using static files by adding an external style sheet to our app.
+
+The process is rather simple:
+  1. Make sure that django.contrib.staticfiles is included in your INSTALLED_APPS (it should be by default).
+  2. In your settings file, define STATIC_URL, for example:
+    * This should be done by default as well. Check the bottom of your settings.py
+  ```python
+  STATIC_URL = '/static/'
+  ```
+  3. Much like we did with the templates, we need to tell django where to look for our static files. This is done using the STATICFILES_DIRS variable.
+  ```python
+  STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+  ```
+  4. Now that django is going to look for a folder static in our BASE_DIR (remember, that is the directory where manage.py is), we need to create that folder.
+  ```shell
+  $ cd /path/to/base/dir
+  $ mkdir static
+  ```
+  5. Now create a new css file inside the static directory and define some css styles.
+  6. Finally, in the home.html template we need to link to that using the static tag.
+  **home.py
+  ```html
+   <head>
+    <title>uStudy</title>
+    <link rel='stylesheet' href='{% static 'style.css' %}
+  </head>
+ ```
+  
+> IMPORTANT: The settings above are for LOCAL development only. Do not attempt to deploy your application live using these settings.
+> For more information, look at the django docs and the [deploying static files docs](https://docs.djangoproject.com/en/1.11/howto/static-files/deployment/)
+
