@@ -104,3 +104,32 @@ $ python manage.py createsuperuser
 ```
 
 You will be prompted for a username, email (optional), and password. Once the super user is created you can visit the admin panel by visiting '127.0.0.1:8000/admin' in your web browser. If you decided to run your server on a different port than the default 8000, make sure your url reflects that.
+
+### Create a home page
+
+Create a new file file in your projects package (the same directory the settings.py is in) called views.py. It should look like the following:
+
+```python
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse('Welcome to our first django app! Powered by Python and the Django Crash Course.')
+```
+
+Open your projects root_urlconf file (normally the urls.py file in the project package, which is the same directory the settings.py is in).
+
+Add a new url to the url patterns matching with the first argument set to the string you wish the url to be. Make sure to import views as well, see below.
+
+```python
+from django.conf.urls import url
+from django.contrib import admin
+
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.home, name='home'), #maps an empty url string such as 'localhost:8000' to the home function in the views file
+    url(r'^admin/', admin.site.urls),
+]
+```
+
+Launch your server, navigate your browser to 'localhost:8000' and see the text from the home function displayed!
