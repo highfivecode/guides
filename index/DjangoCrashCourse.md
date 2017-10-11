@@ -5,6 +5,9 @@
 [Migrations](https://docs.djangoproject.com/en/1.11/topics/migrations/)
 
 ### Setup Workspace
+
+[watch video](https://youtu.be/fGGDw5yRRXE)
+
   It is *highly* recommended you store all your code in a workspace directory that is easily accessible from the terminal and your computer's graphical interface. A great place is on your desktop or in your home directory. Keep your workspace organized by further breaking it into language specific directories. See the example below for a suggested workspace directory structure.
 
 ```
@@ -24,9 +27,13 @@
 
 ### Activate Your Virtual Environment
 
+[watch video](https://youtu.be/fGGDw5yRRXE)
+
 See the cheat sheet: [Virtual Environment Cheatsheet](./VirtualEnvCheatSheet.md)
 
 ### Install Django or Make Sure Django is Already Installed
+
+[watch video](https://youtu.be/fGGDw5yRRXE)
 
 Use pip freeze to check.
 
@@ -62,17 +69,23 @@ To specify a specific django version, use the syntax below:
 
 ### CD Into Where You Want Your Project to Live
 
+[watch video](https://youtu.be/fGGDw5yRRXE)
+
 ```shell
 $ cd ~/Desktop/workspace/python/django
 ```
 
 ### Start Your First Project!
 
+[watch video](https://youtu.be/fGGDw5yRRXE)
+
 ```shell
 $ django-admin startproject myFirstProject
 ```
 
 ### Migrate your database
+
+[watch video](https://youtu.be/fGGDw5yRRXE)
 
 Migrations are Django's way of updating your database. We will get more familiar with them later. However right now we need to run a migration to build the initial database that django will use.
 
@@ -83,6 +96,8 @@ $ python manage.py migrate
 This command will create a file called db.sqlite3 which is what we will use for our database. See more on migrations [here](https://docs.djangoproject.com/en/1.11/topics/migrations/).
 
 ### Launch Your Server
+
+[watch video](https://youtu.be/fGGDw5yRRXE)
 
 Change directory into your projects root level directory. You will see a file called 'manage.py' there.
 
@@ -97,6 +112,8 @@ Press ctrl + c to quit the server.
 
 ### Create a Super User and Log In to the Admin Panel
 
+[watch video](https://youtu.be/89pwzSE5c0Q)
+
 Super users are users who are granted all privileges by default. They can create, read (view), update, or delete any entries from the database by using the admin panel. Creating them is done through manage.py and uses the createsuperuser command.
 
 ```shell
@@ -106,6 +123,8 @@ $ python manage.py createsuperuser
 You will be prompted for a username, email (optional), and password. Once the super user is created you can visit the admin panel by visiting '127.0.0.1:8000/admin' in your web browser. If you decided to run your server on a different port than the default 8000, make sure your url reflects that.
 
 ### Create a home page
+
+[watch video](https://youtu.be/Q_Q9umYQzf0)
 
 Create a new file file in your projects package (the same directory the settings.py is in) called views.py. It should look like the following:
 
@@ -133,3 +152,46 @@ urlpatterns = [
 ```
 
 Launch your server, navigate your browser to 'localhost:8000' and see the text from the home function displayed!
+
+### Create a template
+
+[watch video](https://youtu.be/Y2s6qj0kfOA)
+
+Templates allow us to minimize our code for new pages (by extending or inheriting from other templates) and also use template code and template variables passed from the views.
+
+In your root level directory (where manage.py is), create a new directory (use mkdir from the terminal) and call it templates. In templates, create a new bare bones HTML5 like so:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>uStudy</title>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Welcome to uStudy!</h1>
+    </div>
+  </body>
+</html>
+```
+
+In settings.py, on line 59, change the value of the 'DIRS' keyword from [] to:
+```python
+'DIRS': [os.path.join(BASE_DIR, 'templates')], #base_dir/templates
+```
+
+Finally, change your previous Home view to the following:
+
+```python
+from django.shortcuts import render
+
+def home(request):
+    '''
+    Renders home page
+    '''
+    context = {} #an empty dictionary
+    return render(request, 'home.html', context)
+```
+
+
+
