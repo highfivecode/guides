@@ -9,7 +9,8 @@
 [Template Language](https://docs.djangoproject.com/en/1.11/topics/templates/#the-django-template-language)
   * [Templating Tags Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-tags)
   * [Templating Filter Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-filters)  
-[Model Fields](https://docs.djangoproject.com/en/1.11/ref/models/fields/)
+  
+[Model Fields](https://docs.djangoproject.com/en/1.11/ref/models/fields/)  
 [QuerySets](https://docs.djangoproject.com/en/1.11/ref/models/querysets/)
  
 ## Table Of Contents
