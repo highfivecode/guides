@@ -3,15 +3,15 @@
 
 ##### Django Documentation References
 [Django Homepage](https://docs.djangoproject.com)  
-[Django Packages](https://djangopackages.org/)  
-[Migrations](https://docs.djangoproject.com/en/1.11/topics/migrations/)  
+[Django Packages](https://djangopackages.org/)     
+[Making Queries](https://docs.djangoproject.com/en/1.11/topics/db/queries/)
+[Migrations](https://docs.djangoproject.com/en/1.11/topics/migrations/) 
+[Model Fields](https://docs.djangoproject.com/en/1.11/ref/models/fields/)  
+[QuerySets](https://docs.djangoproject.com/en/1.11/ref/models/querysets/)
 [Templates](https://docs.djangoproject.com/en/1.11/topics/templates/)  
 [Template Language](https://docs.djangoproject.com/en/1.11/topics/templates/#the-django-template-language)
   * [Templating Tags Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-tags)
-  * [Templating Filter Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-filters)  
-  
-[Model Fields](https://docs.djangoproject.com/en/1.11/ref/models/fields/)  
-[QuerySets](https://docs.djangoproject.com/en/1.11/ref/models/querysets/)
+  * [Templating Filter Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-filters)
  
 ## Table Of Contents
 
