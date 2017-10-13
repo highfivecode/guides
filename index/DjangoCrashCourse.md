@@ -481,7 +481,7 @@ This will open the interpreter.
 
 ### Making Database Queries
 [back to top](#django-crash-course-quick-reference)  
-[watch video](#)
+[watch video](https://youtu.be/aWDXbLZ4iOY)
 
 Django gives an nice API that lets us create, retrieve, update, and delete (CRUD) objects. We can using this in the manage.py shell as well as in the views. Let's go through the process in the manage.py shell.
 
