@@ -358,6 +358,8 @@ The process is rather simple:
 
 ### Creating an App
 [back to top](#django-crash-course-quick-reference)  
+[watch video](https://youtu.be/UTaFD-OlCEk)
+
 
 We already created a django project, now we will create an app. The terminology is confusing so lets define each:
 
