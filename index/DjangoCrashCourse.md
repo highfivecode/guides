@@ -9,7 +9,8 @@
 [Template Language](https://docs.djangoproject.com/en/1.11/topics/templates/#the-django-template-language)
   * [Templating Tags Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-tags)
   * [Templating Filter Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-filters)
-  
+[Model Fields](https://docs.djangoproject.com/en/1.11/ref/models/fields/)
+ 
 ## Table Of Contents
 
 1. [Workspace Setup](#workspace-setup)
@@ -20,6 +21,7 @@
 6. [Django Templating Language](#django-templating-language)
 7. [Static Files](#configuring-static-files)
 8. [Creating An App](#creating-an-app)
+9. [Creating A Model](#creating-a-model)
 
 
 
@@ -428,3 +430,45 @@ def home(request):
     url(r'^admin/', admin.site.urls),
 ]
 ```
+
+### Creating A Model
+[back to top](#django-crash-course-quick-reference)  
+[watch video]()  
+
+Now that we have our flashcard configured and the ROOTURL conf linking to the flashcard apps urls.py (by using include), we can create our first model. Models allows to define our database layout. What we define in our model ends up become our database scheme. So if we have a model "Flashcard" with attributes "title" and "description", that means our database will have a table for "Flashcard" with three columns "id" (automatically defined by django), "title", and "description". 
+
+If this concept of databases is new to you, think of an excel spreadsheet called "Flashcard" with three columns "id", "title", and "description". We can add need rows to the spreadsheet and put the values we need in the columns. We can also edit and delete the rows on the spreadsheet.
+
+Lets create our first model, we will keep it very basic:
+
+**flashcards/models.py**
+```python
+class Deck(models.Model):
+	title = models.CharField(max_length=64, null=False, blank=False)
+ description = models.CharField(max_length=255, null=False, blank=True)
+```
+
+We added the model deck and gave it two attributes, title and description, which are both of the CharField model field types. See more documentation on model fields [here](https://docs.djangoproject.com/en/1.11/ref/models/fields/)
+
+Now lets open the shell and create our first database entries!
+
+```shell
+python manage.py shell
+```
+
+This will open the interpreter.
+
+```python
+>>> # import the model, so we can use it
+>>> from flashcards.models import Deck
+>>> # create a new deck
+>>> myDeck = Deck(title='My First Deck', description='I created this from the shell, and it's actually stored in the database')
+>>> # call the save method on the myDeck object. This will "push" it to the database
+>>> myDeck.save()
+>>> # check to see that it is saved
+>>> Deck.objects.all()
+>>> 
+```
+
+
+
