@@ -21,8 +21,10 @@
 7. [Static Files](#configuring-static-files)
 8. [Creating An App](#creating-an-app)
 
-### Workspace Setup
 
+
+### Workspace Setup 
+[back to top](#django-crash-course-quick-reference)
 [watch video](https://youtu.be/fGGDw5yRRXE)
 
   It is *highly* recommended you store all your code in a workspace directory that is easily accessible from the terminal and your computer's graphical interface. A great place is on your desktop or in your home directory. Keep your workspace organized by further breaking it into language specific directories. See the example below for a suggested workspace directory structure.
@@ -43,11 +45,13 @@
 ```
 
 ### Activate Your Virtual Environment
+[back to top](#django-crash-course-quick-reference)
 [watch video](https://youtu.be/fGGDw5yRRXE)
 
 See the cheat sheet: [Virtual Environment Cheatsheet](./VirtualEnvCheatSheet.md)
 
 ### Install Django or Make Sure Django is Already Installed
+[back to top](#django-crash-course-quick-reference)
 [watch video](https://youtu.be/fGGDw5yRRXE)
 
 Use pip freeze to check.
@@ -84,6 +88,7 @@ To specify a specific django version, use the syntax below:
 
 
 ### Start Your First Project!
+[back to top](#django-crash-course-quick-reference)
 [watch video](https://youtu.be/fGGDw5yRRXE)
 
 First CD into where you want your project to live:
@@ -99,6 +104,7 @@ $ django-admin startproject myFirstProject
 ```
 
 ### Migrate your database
+[back to top](#django-crash-course-quick-reference)
 [watch video](https://youtu.be/fGGDw5yRRXE)
 
 Migrations are Django's way of updating your database. We will get more familiar with them later. However right now we need to run a migration to build the initial database that django will use.
@@ -110,6 +116,7 @@ $ python manage.py migrate
 This command will create a file called db.sqlite3 which is what we will use for our database. See more on migrations [here](https://docs.djangoproject.com/en/1.11/topics/migrations/).
 
 ### Launch Your Server
+[back to top](#django-crash-course-quick-reference)
 [watch video](https://youtu.be/fGGDw5yRRXE)
 
 Change directory into your projects root level directory. You will see a file called 'manage.py' there.
@@ -124,6 +131,7 @@ This starts a lightweight development Web server on the local machine. By defaul
 Press ctrl + c to quit the server.
 
 ### Create a Super User and Log In to the Admin Panel
+[back to top](#django-crash-course-quick-reference)
 [watch video](https://youtu.be/89pwzSE5c0Q)
 
 Super users are users who are granted all privileges by default. They can create, read (view), update, or delete any entries from the database by using the admin panel. Creating them is done through manage.py and uses the createsuperuser command.
@@ -135,6 +143,7 @@ $ python manage.py createsuperuser
 You will be prompted for a username, email (optional), and password. Once the super user is created you can visit the admin panel by visiting '127.0.0.1:8000/admin' in your web browser. If you decided to run your server on a different port than the default 8000, make sure your url reflects that.
 
 ### Create a home page
+[back to top](#django-crash-course-quick-reference)
 [watch video](https://youtu.be/Q_Q9umYQzf0)
 
 Create a new file file in your projects package (the same directory the settings.py is in) called views.py. It should look like the following:
@@ -167,6 +176,7 @@ urlpatterns = [
 Launch your server, navigate your browser to 'localhost:8000' and see the text from the home function displayed!
 
 ### Create a template
+[back to top](#django-crash-course-quick-reference)
 [watch video](https://youtu.be/Y2s6qj0kfOA)
 
 Templates allow us to minimize our code for new pages (by extending or inheriting from other templates) and also use template code and template variables passed from the views.
@@ -208,6 +218,7 @@ def home(request):
 ```
 
 ### Django Templating Language
+[back to top](#django-crash-course-quick-reference)
 [watch video for template variables and filters](https://https://youtu.be/K1pE0sh31Rs)  
 [watch video for template tags](https://youtu.be/zZsL-aSXNPw)
 
@@ -302,6 +313,7 @@ Now in the home.html template we will add template tags to 1. Check if the list 
 ```
 
 ### Configuring Static Files
+[back to top](#django-crash-course-quick-reference)
 [watch video](https://youtu.be/daYncgqTg68)
 
 Websites generally need to serve additional files such as images, JavaScript, or CSS. In Django, we refer to these files as “static files”. (Yes, we copied that right from the [static files documentation](https://docs.djangoproject.com/en/1.11/howto/static-files/)). We are gonna to practice using static files by adding an external style sheet to our app.
@@ -345,6 +357,7 @@ The process is rather simple:
 > For more information, look at the django docs and the [deploying static files docs](https://docs.djangoproject.com/en/1.11/howto/static-files/deployment/)
 
 ### Creating an App
+[back to top](#django-crash-course-quick-reference)
 
 We already created a django project, now we will create an app. The terminology is confusing so lets define each:
 
