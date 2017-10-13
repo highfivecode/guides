@@ -27,6 +27,7 @@
 8. [Creating An App](#creating-an-app)
 9. [Creating A Model](#creating-a-model)
 10. [Making Database Queries](#making-database-queries)
+11. [Using Querysets In Templates](#using-querysets-in-templates)
 
 
 
@@ -522,3 +523,64 @@ When you first create a model, django gives it a default manager named "objects"
 7. [Deck.objects.order_by('title')](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#order-by)
 
 Now try some more from the docs listed above!
+
+###Using QuerySets In Templates
+[back to top](#django-crash-course-quick-reference)  
+[watch video]()
+
+Doing all these queries in the shell is great and all, but we need to be able to use them views so that our users can actually take advantage of our awesome Django skills. The good thing is, this is super easy to do. All we need to do is to pass the queryset to the template context using the view and then use template tags to iterate over it. 
+
+1. First we need to create a directory structure for our templates in our app. Make the following directories:
+  * flashcards/templates
+  * flashcards/templates/flashcards
+  
+> Yes that last bullet is correct. We want a templates directory inside the flashcards app, and a flashcards directory inside the flashcards/templates directory. This is due to the way Django searches for the correct template to render. Make like the URLs, it searches through a list and returns the FIRST one with the name it is looking for. In this case it will be 'home.html'. The problem is that there is another 'home.html' in the templates directory in our root directory (where manage.py is) that serves as our overall home page. Yes you could just rename your flashcards template 'home.html' but that fixes the symptom, not the problem. You can still have collisions with other templates if you are not very careful with your naming. Using the nested "flashcards/templates/flashcards/" directory to store your flashcard specific templates will make things much easier to maintain.
+
+2. Change your flashcards views.py to include a variable of type QuerySet and pass it into the template context:
+
+**flashcards/views.py**
+```python
+from django.shortcuts import render
+
+from .models import Deck
+
+def home(request):
+    '''
+    Renders FLASHCARD app home page
+    '''
+    qs = Deck.objects.all()
+    context = {'decks':qs}
+    return render(request, 'flashcards/home.html', context)
+```
+
+3. And finally copy the djangocc/templates/home.html to flashcards/templates/home.html and change it to iterate over the queryset:
+
+```html
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>uStudy</title>
+    <link rel='stylesheet' href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+      <nav>
+        <a href="">uStudy</a> |
+        <a href="">Decks</a> |
+        <a href="">About</a> |
+        <a href="">Contact</a>
+      </nav>
+
+      {% if decks %}
+	<ul>
+        {% for deck in decks %}
+	 <li>{{deck}}</li>
+        {% endfor %}
+	</ul>
+      {% else %}
+	<h1>No Decks Found! Contact An Admin!</h1>
+      {% endif %}
+	
+  </body>
+</html>
+```
