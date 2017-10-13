@@ -435,9 +435,9 @@ def home(request):
 
 ### Creating A Model
 [back to top](#django-crash-course-quick-reference)  
-[watch video]()  
+[watch video](https://youtu.be/YFdVuaSxZh8)  
 
-Now that we have our flashcard configured and the ROOTURL conf linking to the flashcard apps urls.py (by using include), we can create our first model. Models allows to define our database layout. What we define in our model ends up become our database scheme. So if we have a model "Flashcard" with attributes "title" and "description", that means our database will have a table for "Flashcard" with three columns "id" (automatically defined by django), "title", and "description". 
+Now that we have our flashcard configured and the ROOTURL conf linking to the flashcard apps urls.py (by using include), we can create our first model. Models allow us to define our database layout. What we define in our model ends up become our database schema. So if we have a model "Flashcard" with attributes "title" and "description", that means our database will have a table for "Flashcard" with three columns "id" (automatically defined by django), "title", and "description". 
 
 If this concept of databases is new to you, think of an excel spreadsheet called "Flashcard" with three columns "id", "title", and "description". We can add need rows to the spreadsheet and put the values we need in the columns. We can also edit and delete the rows on the spreadsheet.
 
@@ -475,7 +475,6 @@ This will open the interpreter.
 >>> myDeck.save()
 >>> # check to see that it is saved
 >>> Deck.objects.all()
->>> 
 ```
 
 
