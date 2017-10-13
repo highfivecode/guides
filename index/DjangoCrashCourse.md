@@ -392,7 +392,7 @@ urlpatterns = [
  
  4. Now we need to create the view that this url is mapping to. This will be the views.py in the app directory NOT the views.py in the project package (the directory where settings.py is).
  
- **flashcards/views.py
+ **flashcards/views.py**
  ```python
  from django.http import HttpResponse
 
