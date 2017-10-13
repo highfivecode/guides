@@ -447,7 +447,7 @@ Lets create our first model, we will keep it very basic:
 ```python
 class Deck(models.Model):
 	title = models.CharField(max_length=64, null=False, blank=False)
- description = models.CharField(max_length=255, null=False, blank=True)
+ 	description = models.CharField(max_length=255, null=False, blank=True)
 ```
 
 We added the model deck and gave it two attributes, title and description, which are both of the CharField model field types. See more documentation on model fields [here](https://docs.djangoproject.com/en/1.11/ref/models/fields/)
