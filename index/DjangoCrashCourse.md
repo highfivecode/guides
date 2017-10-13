@@ -452,7 +452,13 @@ class Deck(models.Model):
 
 We added the model deck and gave it two attributes, title and description, which are both of the CharField model field types. See more documentation on model fields [here](https://docs.djangoproject.com/en/1.11/ref/models/fields/)
 
-Now lets open the shell and create our first database entries!
+
+
+Because we made changes to how we want our database configured, we need to tell django to update. We use two commands for this:
+1. python manage.py makemigrations
+2. python manage.py migrate
+
+After these commands have been run, we can open the shell and create our first database entries!
 
 ```shell
 python manage.py shell
