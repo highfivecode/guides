@@ -524,7 +524,7 @@ When you first create a model, django gives it a default manager named "objects"
 
 Now try some more from the docs listed above!
 
-###Using QuerySets In Templates
+### Using QuerySets In Templates
 [back to top](#django-crash-course-quick-reference)  
 [watch video]()
 
