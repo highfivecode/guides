@@ -5,6 +5,7 @@
 [Django Homepage](https://docs.djangoproject.com)  
 [Django Packages](https://djangopackages.org/)     
 [Making Queries](https://docs.djangoproject.com/en/1.11/topics/db/queries/)  
+[Managers (Querysets)](https://docs.djangoproject.com/en/1.11/topics/db/managers/)  
 [Migrations](https://docs.djangoproject.com/en/1.11/topics/migrations/)  
 [Model Fields](https://docs.djangoproject.com/en/1.11/ref/models/fields/)  
 [QuerySets](https://docs.djangoproject.com/en/1.11/ref/models/querysets/)  
@@ -24,6 +25,7 @@
 7. [Static Files](#configuring-static-files)
 8. [Creating An App](#creating-an-app)
 9. [Creating A Model](#creating-a-model)
+10. [Making Database Queries](#making-database-queries)
 
 
 
@@ -477,5 +479,45 @@ This will open the interpreter.
 >>> Deck.objects.all()
 ```
 
+### Making Database Queries
+[back to top](#django-crash-course-quick-reference)  
+[watch video](#)
 
+Django gives an nice API that lets us create, retrieve, update, and delete (CRUD) objects. We can using this in the manage.py shell as well as in the views. Let's go through the process in the manage.py shell.
 
+```shell
+$ python manage.py shell
+```
+
+```python
+>>> from flashcards.models import Deck
+>>> d = deck(title='some title', description='some description')
+>>> # to save the the new deck object to the database, use the save method
+>>> # this creates an INSERT sql statement
+>>> d.save()
+>>> # You can also use the create method on the class itself which creates the object
+>>> # and inserts it at the same time
+>>> Deck.objects.create(title='some_title', description-'some description')
+>>> 
+>>> # Now lets change the title of the "d" object
+>>> d.title = 'a new title'
+>>> # Calling the save method now performs an UPDATE sql statement and the database is updated with
+>>> # the new title for that database entry
+>>> d.save()
+>>> # Now lets delete the d object.
+>>> d.delete()
+```
+
+Obviously we want to be able to do more than just create, read, update, and delete objects in the database. For example, we may would want to list all objects in a table, search (filter) the objects by a given keyword, sort them alphabetically, etc. To do this we use [Managers](https://docs.djangoproject.com/en/1.11/topics/db/managers/). A manager is the interface through which database query operations are provided to Django models.
+
+When you first create a model, django gives it a default manager named "objects". The managers communicate with the database and return the results of a given query, called a QuerySet. For advanced case you can rename the manager, create custom managers, modify the initial manager, etc. But we will stick with the basics.  Now that you know how to add objects to the database, add a bunch of decks. Then try the following queries: 
+
+1. [Deck.objects.all()](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#all)
+2. [Deck.objects.last()](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#last)
+3. [Deck.objects.first()](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#first)
+4. [Deck.objects.get(id=2)](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#get)
+5. [Deck.objects.get(title='some title')](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#get)
+6. [Deck.objects.count()](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#count)
+7. [Deck.objects.order_by('title')](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#order-by)
+
+Now try some more from the docs listed above!
