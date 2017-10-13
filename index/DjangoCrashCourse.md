@@ -19,6 +19,7 @@
 5. [Create a home page](#create-a-home-page)
 6. [Django Templating Language](#django-templating-language)
 7. [Static Files](#configuring-static-files)
+8. [Creating An App](#creating-an-app)
 
 ### Workspace Setup
 
