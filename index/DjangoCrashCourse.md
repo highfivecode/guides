@@ -2,7 +2,8 @@
 # Django Crash Course Quick Reference
 
 ##### Django Documentation References
-[Django homepage](https://docs.djangoproject.com)  
+[Django Homepage](https://docs.djangoproject.com)  
+[Django Packages](https://djangopackages.org/)  
 [Migrations](https://docs.djangoproject.com/en/1.11/topics/migrations/)  
 [Templates](https://docs.djangoproject.com/en/1.11/topics/templates/)  
 [Template Language](https://docs.djangoproject.com/en/1.11/topics/templates/#the-django-template-language)
@@ -323,15 +324,91 @@ The process is rather simple:
   $ mkdir static
   ```
   5. Now create a new css file inside the static directory and define some css styles.
-  6. Finally, in the home.html template we need to link to that using the static tag.
-  **home.py
+  6. Finally, in the home.html template we need to link to that using the static tag. The source of the file in the static tag should be RELATIVE to the directory you may in the STATICFILES_DIRS variable. So if you have a file: djangocc/static/style.css you would do the below:
+  **home.py**
   ```html
    <head>
     <title>uStudy</title>
     <link rel='stylesheet' href="{% static 'style.css' %}" />
   </head>
  ```
+ 
+ However we like to organize our static folders a bit better and add additional directories for css, javascript, and images inside of it. To like to a file in djangocc/static/css/style.css the correct tag would be:
+ 
+ ```html
+<link rel='stylesheet' href="{% static 'css/style.css' %}" />
+```
+ 
   
-> IMPORTANT: The settings above are for LOCAL development only. Do not attempt to deploy your application live using these settings.
+> IMPORTANT: The settings above are for LOCAL development only. They will work fine for our tutorial project but do not attempt to deploy your application live using these settings.
 > For more information, look at the django docs and the [deploying static files docs](https://docs.djangoproject.com/en/1.11/howto/static-files/deployment/)
 
+### Creating an App
+
+We already created a django project, now we will create an app. The terminology is confusing so lets define each:
+
+1. Django project - a web application powered by the Django web framework. Django projects can contain many apps.
+2. Django app - a small library designed to represent a single aspect of a project. An app is ideally self contained and can be reuseable in many Django projects.
+3. Third party package - Django apps that have been published for download. [see here](https://djangopackages.org/).  
+
+You can think of your house or apartment as your django project. An app would be a specific piece of furniture or appliance. A package would be a specific piece of furniture or appliance that is at the store waiting for you to pick it up, bring it home, and add it to your project.
+
+Creating apps:
+
+1. Run the command: $ python manage.py startapp <appNameHere>
+ 
+ ```shell
+ $ python manage.py startapp flashcards
+ ```
+ 
+ 2. Add flashcards to INSTALLED_APPS in settings.py.  
+ 
+ **settings.py**
+ ```python
+ INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'flashcards'
+]
+ ```
+ 
+ 3. Create a urls.py file in your app folder. It will be similar to the ROOT_URLCONF (by default the urls.py in the project package, the same directory as settings.py) but does not need any references to the admin panel. Here is an example:
+ 
+ **flashcards/urls.py**
+ ```python
+ from django.conf.urls import url
+
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.home, name='home'),
+]
+ ```
+ 
+ 4. Now we need to create the view that this url is mapping to. This will be the views.py in the app directory NOT the views.py in the project package (the directory where settings.py is).
+ 
+ **flashcards/views.py
+ ```python
+ from django.http import HttpResponse
+
+def home(request):
+    '''
+    Renders flashcard app home page
+    '''
+    return HttpResponse('Welcome to the flashcard app')
+ ```
+ 
+ 5. Finally, we need to link to ROOT_URLCONF to the new flashcards urls.py file. Change the urlpatterns variable in the ROOT_URLCONF file to the following:
+ 
+ **djangocc/urls.py (in project package)**
+ ```python
+ urlpatterns = [
+    url(r'^$', views.home, name='home'),
+    url(r'^flashcards/', include('flashcards.urls', namespace='flashcards')),
+    url(r'^admin/', admin.site.urls),
+]
+```
