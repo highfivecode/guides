@@ -526,7 +526,7 @@ Now try some more from the docs listed above!
 
 ### Using QuerySets In Templates
 [back to top](#django-crash-course-quick-reference)  
-[watch video]()
+[watch video](https://youtu.be/hyYV3IN6ejU)
 
 Doing all these queries in the shell is great and all, but we need to be able to use them views so that our users can actually take advantage of our awesome Django skills. The good thing is, this is super easy to do. All we need to do is to pass the queryset to the template context using the view and then use template tags to iterate over it. 
 
@@ -541,15 +541,15 @@ Doing all these queries in the shell is great and all, but we need to be able to
 **flashcards/views.py**
 ```python
 from django.shortcuts import render
-
 from .models import Deck
 
+# Create your views here.
 def home(request):
     '''
-    Renders FLASHCARD app home page
+    Renders the FLASHCARD app home template
     '''
-    qs = Deck.objects.all()
-    context = {'decks':qs}
+    qs = Deck.objects.order_by('-title')
+    context = {'decks': qs}
     return render(request, 'flashcards/home.html', context)
 ```
 
@@ -572,15 +572,15 @@ def home(request):
       </nav>
 
       {% if decks %}
-	<ul>
-        {% for deck in decks %}
-	 <li>{{deck}}</li>
-        {% endfor %}
-	</ul>
+        <ul>
+          {% for deck in decks %}
+            <li>{{deck.title}}</li>
+          {% endfor %}
+        </ul>
       {% else %}
-	<h1>No Decks Found! Contact An Admin!</h1>
+        <h1>No Decks Found! Contact an Admin!</h1>
       {% endif %}
-	
+
   </body>
 </html>
 ```
