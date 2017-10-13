@@ -9,6 +9,7 @@
 [Migrations](https://docs.djangoproject.com/en/1.11/topics/migrations/)  
 [Model Fields](https://docs.djangoproject.com/en/1.11/ref/models/fields/)  
 [QuerySets](https://docs.djangoproject.com/en/1.11/ref/models/querysets/)  
+[QuerySet API](https://docs.djangoproject.com/en/1.11/ref/models/querysets)  
 [Templates](https://docs.djangoproject.com/en/1.11/topics/templates/)  
 [Template Language](https://docs.djangoproject.com/en/1.11/topics/templates/#the-django-template-language)
   * [Templating Tags Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-tags)
