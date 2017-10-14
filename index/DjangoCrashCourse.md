@@ -27,7 +27,8 @@
 8. [Creating An App](#creating-an-app)
 9. [Creating A Model](#creating-a-model)
 10. [Making Database Queries](#making-database-queries)
-11. [Using Querysets In Templates](#using-querysets-in-templates)
+11. [Using Querysets In Templates](#using-querysets-in-templates)  
+12. [Creating A Base Template](#creating-a-base-template)  
 
 
 
