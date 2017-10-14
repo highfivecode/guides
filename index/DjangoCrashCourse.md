@@ -584,3 +584,76 @@ def home(request):
   </body>
 </html>
 ```
+
+### Creating a Base template
+[back to top](#django-crash-course-quick-reference)  
+[watch video]()
+
+Most websites have a header and footer that remain the same on every page. As you navigate around the webpage, the content between the two is normally the only thing that changes. We have seen how to create templates but it gets tedious having to a write an entirely new HTML page for every new page we want to add to our application. We end up have to copy the headers and footers every single time. That is not fun.
+
+Django has a way around this issue for us and it is called [Template Inheritance](https://docs.djangoproject.com/en/1.11/ref/templates/language/#template-inheritance). Template inheritance allows to write a single HTML page, add a few "block" tags to it, and then reuse that template multiple times changing ONLY what is between the block tags. This is called "extending" a template.
+
+First lets create a new html in the root templates directory called base.py:
+
+**base.py**
+```html
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>uStudy</title>
+    <link rel='stylesheet' href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+      <nav>
+        <a href="">uStudy</a> |
+        <a href="">Decks</a> |
+        <a href="">About</a> |
+        <a href="">Contact</a>
+      </nav>
+
+      {% block content %}
+      {% endblock %}
+
+  </body>
+</html>
+```
+
+We took the original home.html and replaced the contents between the navbar and the end of the page with the {% block content %}{% endblock %} tags. This creates a block that the django templating engine will recognize when it renders the template. Now we can just extend the base.html and add our custom content by declaring the block/endblock tags again. 
+
+Our home.html becomes:
+
+**home.html**
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='homepage-content'>
+  <div class='homepage-banner'>
+    <h1>uStudy</h1>
+    <hr>
+    <h4>Harness the Power of U!</h4>
+    <a class='button' href="">Get Started</a>
+  </div>
+</div>
+{% endblock %}
+```
+
+And our flashcards home.html becomes:
+
+**flashcards/home.html**
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+{% if decks %}
+  <ul>
+    {% for deck in decks %}
+      <li>{{deck.title}}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <h1>No Decks Found! Contact an Admin!</h1>
+  {% endif %}
+{% endblock %}
+```
