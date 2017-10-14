@@ -588,7 +588,7 @@ def home(request):
 
 ### Creating a Base template
 [back to top](#django-crash-course-quick-reference)  
-[watch video]()
+[watch video](https://youtu.be/KTjtfTZFtWo)
 
 Most websites have a header and footer that remain the same on every page. As you navigate around the webpage, the content between the two is normally the only thing that changes. We have seen how to create templates but it gets tedious having to a write an entirely new HTML page for every new page we want to add to our application. We end up have to copy the headers and footers every single time. That is not fun.
 
@@ -657,4 +657,21 @@ And our flashcards home.html becomes:
     <h1>No Decks Found! Contact an Admin!</h1>
   {% endif %}
 {% endblock %}
+```
+
+Now lets add the "url" template tag to the anchor tags in our base.html, this will update the navbar links for ALL pages that inherit (or "extend") from this template!
+
+>>IMPORTANT: the url tag returns an absolute path referencing matching a given view an optional parameters. The syntax is
+>> {% url 'someName' %} where 'someName' is the name keyword for the url you want to match. So to match the url with the name "home"
+>> in the ROOT_URLCONF you would use {% url 'home' %}. You can also use the namespace of an application to reference the apps url.py.
+>> To reference the flashcards app url with the name "home" you would use {% url 'flashcards:home' %}.
+
+**base.html**
+```html
+<nav>
+  <a href="{% url 'home' %}">uStudy</a> |
+  <a href="{% url 'flashcards:home' %}">Decks</a> |
+  <a href="">About</a> |
+  <a href="">Contact</a>
+</nav>
 ```
