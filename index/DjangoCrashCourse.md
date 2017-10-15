@@ -678,7 +678,7 @@ Now lets add the "url" template tag to the anchor tags in our base.html, this wi
 
 ### Models and Many-To-One Relationships
 [back to top](#django-crash-course-quick-reference)  
-[watch video](https://youtu.be/KTjtfTZFtWo)
+[watch video](https://youtu.be/uRNNv6Fy-eE)
 
 Just having decks in our database doesn't do much for us. We already said that each deck should have a bunch of flashcards to go with it. Let's create the flashcard model, the only new thing you will see is the [ForeignKey field](https://docs.djangoproject.com/en/1.11/ref/models/fields/#foreignkey). The ForeignKey field takes two required positional arguments: the class to which the model is related (Deck in our case) and the "[on_delete](https://docs.djangoproject.com/en/1.11/ref/models/fields/#django.db.models.ForeignKey.on_delete)" option. This creates a foreign key relationship between the parent (the deck in our case) and the child (this flashcard). Whenever our Deck is deleted, all the flashcards will be deleted as well (due to us setting on_delete=models.CASCADE).
 
