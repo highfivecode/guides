@@ -795,7 +795,7 @@ class Deck(models.Model):
 **flashcards/admin.py**
 ```python
 Class DeckAdmin(admin.ModelAdmin):
-    list_display=('title', 'active', 'get_number_of_cards')
+    list_display=('title', 'active', 'get_number_of_cards_as_str')
 ```
 
 6. Now lets add a filter, so the user can easily filter by active decks. We will use the [list_filter option](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_filter)
@@ -803,7 +803,7 @@ Class DeckAdmin(admin.ModelAdmin):
 **flashcards/admin.py**
 ```python
 Class DeckAdmin(admin.ModelAdmin):
-    list_display=('title', 'active', 'get_number_of_cards')
+    list_display=('title', 'active', 'get_number_of_cards_as_str')
     list_filter=('is_active')
 ```
 
@@ -812,7 +812,7 @@ Class DeckAdmin(admin.ModelAdmin):
 **flashcards/admin.py**
 ```python
 Class DeckAdmin(admin.ModelAdmin):
-    list_display=('title', 'active', 'get_number_of_cards')
+    list_display=('title', 'active', 'get_number_of_cards_as_str')
     list_filter=('is_active')
     search_fields = ['title', 'description']
 ```
