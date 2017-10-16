@@ -776,7 +776,7 @@ Class DeckAdmin(admin.ModelAdmin):
 
 5. A value in list display can be a string representing on attribute on the model itself. That's fancy talk for saying we can write a method on our model (in models.py) and use it on our list display. Check it out.
 
-**flashcards/modesl.py**
+**flashcards/models.py**
 ```python
 class Deck(models.Model):
     title = models.CharField(max_length=64, null=False, blank=False)
