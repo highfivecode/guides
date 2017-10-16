@@ -705,7 +705,7 @@ Create a few flashcards in the shell like you previously did. You can access all
 ```
 ### The Django Admin Panel
 [back to top](#django-crash-course-quick-reference)  
-[watch video]()
+[watch video](https://youtu.be/QqyEBTXSojg)
 
 Let's say you are building a django powered web application for a client who does not know how to use the shell. Woah, deal breaker right?!? The client won't be able to add anything to the database!
 
