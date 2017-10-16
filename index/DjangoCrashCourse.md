@@ -30,6 +30,7 @@
 11. [Using Querysets In Templates](#using-querysets-in-templates)  
 12. [Creating A Base Template](#creating-a-base-template)  
 13. [Models and Many-To-One Relationships](#models-and-many-to-one-relationships)
+14. [The Django Admin Panel](#the-django-admin-panel)  
 
 
 ### Workspace Setup 
@@ -699,3 +700,25 @@ Create a few flashcards in the shell like you previously did. You can access all
 >>> d1 = Deck.objects.first()
 >>> d1.article_set.all()
 ```
+### The Django Admin Panel
+[back to top](#django-crash-course-quick-reference)  
+[watch video]()
+
+Let's say you are building a django powered web application for a client who does not know how to use the shell. Woah, deal breaker right?!? The client won't be able to add anything to the database!
+
+Now you might say..."I remember you saying something about an admin panel that allows me to create, read, update, and delete database entries in a previous video. The one where we made our super user?"
+
+That's right! Django comes with an awesome admin panel that we will use from here on when it comes to modifying our database. First we will configure our admin site to use our Flashcards app models and then we will customize it to our own needs.
+
+1. Open flashcards/admin.py and "register" the model with the admin site.
+
+**flashcards/admin.py**
+```python
+from django.contrib import admin
+from .models import Deck, Card
+
+admin.site.register(Deck)
+admin.site.register(Card)
+```
+
+2. Log in to your admin panel. That's it!
