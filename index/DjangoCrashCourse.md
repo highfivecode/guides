@@ -34,6 +34,7 @@
 12. [Creating A Base Template](#creating-a-base-template)  
 13. [Models and Many-To-One Relationships](#models-and-many-to-one-relationships)
 14. [The Django Admin Panel](#the-django-admin-panel)  
+15. [Admin Panel Options](#admin-panel-options)  
 
 
 ### Workspace Setup 
@@ -725,3 +726,93 @@ admin.site.register(Card)
 ```
 
 2. Log in to your admin panel. That's it!
+
+### Admin Panel Options
+[back to top](#django-crash-course-quick-reference)  
+[watch video](https://youtu.be/QqyEBTXSojg)
+
+The admin panel has many options that allow you to customize it to your specific needs. Let's jump in. [docs here](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/#modeladmin-options).
+
+1. Previously we just used admin.site.register(ClassNameHere) to register our models and get the default layout. Well, we won't be using the default layout anymore so we need to refactor our code here. The ModelAdmin class is a representation of a model in the admin interface. We have to create our own representation of the ModelAdmin class.
+
+**flashcards/admin.py**
+```python
+from django.contrib import admin
+from .models import Deck, Card
+
+Class DeckAdmin(admin.ModelAdmin):
+    pass
+
+Class CardAdmin(admin.ModelAdmin):
+    pass
+
+# Register your models here.
+admin.site.register(Deck, DeckAdmin)
+admin.site.register(Card, CardAdmin)
+```
+
+2. Let's add an "active" field to our Deck model. This way we can create new decks and not "release" them to our users while we are still busy adding cards to them. When we are done adding all the cards on a new deck, we can update the Deck object to be active.
+
+**flashcards/models.py**
+```python
+class Deck(models.Model):
+    title = models.CharField(max_length=64, null=False, blank=False)
+    description = models.CharField(max_length=255, null=False, blank=True)
+    is_active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+```
+
+3. Make migrations and migrate
+
+4. Let's display the value of the active field for the Deck in the admin panel. We will use the [list_display option](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display)
+
+**flashcards/admin.py**
+```python
+Class DeckAdmin(admin.ModelAdmin):
+    list_display=('title', 'active')
+```
+
+5. A value in list display can be a string representing on attribute on the model itself. That's fancy talk for saying we can write a method on our model (in models.py) and use it on our list display. Check it out.
+
+**flashcards/modesl.py**
+```python
+class Deck(models.Model):
+    title = models.CharField(max_length=64, null=False, blank=False)
+    description = models.CharField(max_length=255, null=False, blank=True)
+    is_active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+	
+    def get_number_of_cards_as_str(self):
+        num = self.card_set.count()
+	return '%s' %(num)
+    get_number_of_cards.short_description = 'Card Count'
+```
+
+**flashcards/admin.py**
+```python
+Class DeckAdmin(admin.ModelAdmin):
+    list_display=('title', 'active', 'get_number_of_cards')
+```
+
+6. Now lets add a filter, so the user can easily filter by active decks. We will use the [list_filter option](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_filter)
+
+**flashcards/admin.py**
+```python
+Class DeckAdmin(admin.ModelAdmin):
+    list_display=('title', 'active', 'get_number_of_cards')
+    list_filter=('is_active')
+```
+
+7. Finally lets add a search field, so the user can search for a record if we have a lot of Card or Deck records. We will use the [search_fields option](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields)
+
+**flashcards/admin.py**
+```python
+Class DeckAdmin(admin.ModelAdmin):
+    list_display=('title', 'active', 'get_number_of_cards')
+    list_filter=('is_active')
+    search_fields = ['title', 'description']
+```
