@@ -35,6 +35,7 @@
 13. [Models and Many-To-One Relationships](#models-and-many-to-one-relationships)
 14. [The Django Admin Panel](#the-django-admin-panel)  
 15. [Admin Panel Options](#admin-panel-options)  
+16. [Admin Panel Actions](#admin-panel-actions)  
 
 
 ### Workspace Setup 
@@ -816,4 +817,44 @@ Class DeckAdmin(admin.ModelAdmin):
     list_display=('title', 'is_active', 'get_number_of_cards_as_str')
     list_filter=('is_active',)
     search_fields = ['title', 'description']
+```
+### Admin Panel Actions
+[back to top](#django-crash-course-quick-reference)  
+[watch video]()  
+
+Actions allow us to change many objects at once. Here is what the [docs](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/actions/) say:
+
+>>The basic workflow of Django’s admin is, in a nutshell, “select an object, then change it.” This works well for a majority of use cases. However, if you need to make the same change to many objects at once, this workflow can be quite tedious.
+
+Let's jump in. First we need to a write that gets called when the actino s triggered from the admin. This is just a regular function that takes three actions: the current ModelAdmin, and HttpRequest representing the current request, and a QuerySet contain the set of objects selected by the user.
+
+**flashcards/admin.py**
+```python
+def push_live(modeladmin, request, queryset):
+    queryset.update(is_active=True)
+push_live.short_description = "Mark select Decks as active
+```
+
+Now we need to add to our DeckAdmin:  
+**flashcards/admin.py**
+```python
+Class DeckAdmin(admin.ModelAdmin):
+    list_display=('title', 'is_active', 'get_number_of_cards_as_str')
+    list_filter=('is_active',)
+    search_fields = ['title', 'description']
+    actions = [push_live]
+```
+
+Now lets display a message to the user by modifying the push_live method.
+
+**flashcards/admin.py**
+```python
+def push_live(modeladmin, request, queryset):
+    rows_updated = queryset.update(is_active=True)
+    if rows_updated == 1:
+    	message_bit = "1 deck was"
+    else:
+        message_bit = "%s decks were" % rows_updated
+    self.message_user(request, "%s successfully marked as active.") % message_bit
+push_live.short_description = "Mark select Decks as active
 ```
