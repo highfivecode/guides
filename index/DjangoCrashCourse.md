@@ -730,6 +730,7 @@ admin.site.register(Card)
 ### Admin Panel Options
 [back to top](#django-crash-course-quick-reference)  
 [watch video](https://youtu.be/QqyEBTXSojg)
+[watch video on options](https://youtu.be/1BVF5coZ0TQ)
 
 The admin panel has many options that allow you to customize it to your specific needs. Let's jump in. [docs here](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/#modeladmin-options).
 
