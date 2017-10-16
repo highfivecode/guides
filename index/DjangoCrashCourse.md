@@ -820,13 +820,13 @@ Class DeckAdmin(admin.ModelAdmin):
 ```
 ### Admin Panel Actions
 [back to top](#django-crash-course-quick-reference)  
-[watch video]()  
+[watch video](https://youtu.be/SGeC-0MjoRw)  
 
 Actions allow us to change many objects at once. Here is what the [docs](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/actions/) say:
 
 >>The basic workflow of Django’s admin is, in a nutshell, “select an object, then change it.” This works well for a majority of use cases. However, if you need to make the same change to many objects at once, this workflow can be quite tedious.
 
-Let's jump in. First we need to a write that gets called when the action is triggered from the admin. This is just a regular function that takes three arguments: the current ModelAdmin, and HttpRequest representing the current request, and a QuerySet containing the set of objects selected by the user.
+Let's jump in. First we need to a write a function that gets called when the action is triggered from the admin. This is just a regular function that takes three arguments: the current ModelAdmin, and HttpRequest representing the current request, and a QuerySet containing the set of objects selected by the user.
 
 **flashcards/admin.py**
 ```python
