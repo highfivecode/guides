@@ -3,6 +3,9 @@
 
 ##### Django Documentation References
 [Django Homepage](https://docs.djangoproject.com)  
+  
+[Admin Site](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/)  
+[Admin Site Actions](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/actions/)  
 [Django Packages](https://djangopackages.org/)     
 [Making Queries](https://docs.djangoproject.com/en/1.11/topics/db/queries/)  
 [Managers (Querysets)](https://docs.djangoproject.com/en/1.11/topics/db/managers/)  
