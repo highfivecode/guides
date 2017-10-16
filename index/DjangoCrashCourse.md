@@ -826,13 +826,13 @@ Actions allow us to change many objects at once. Here is what the [docs](https:/
 
 >>The basic workflow of Django’s admin is, in a nutshell, “select an object, then change it.” This works well for a majority of use cases. However, if you need to make the same change to many objects at once, this workflow can be quite tedious.
 
-Let's jump in. First we need to a write that gets called when the actino s triggered from the admin. This is just a regular function that takes three actions: the current ModelAdmin, and HttpRequest representing the current request, and a QuerySet contain the set of objects selected by the user.
+Let's jump in. First we need to a write that gets called when the action is triggered from the admin. This is just a regular function that takes three arguments: the current ModelAdmin, and HttpRequest representing the current request, and a QuerySet containing the set of objects selected by the user.
 
 **flashcards/admin.py**
 ```python
 def push_live(modeladmin, request, queryset):
     queryset.update(is_active=True)
-push_live.short_description = "Mark select Decks as active
+push_live.short_description = "Mark selected Decks as active"
 ```
 
 Now we need to add to our DeckAdmin:  
@@ -852,9 +852,10 @@ Now lets display a message to the user by modifying the push_live method.
 def push_live(modeladmin, request, queryset):
     rows_updated = queryset.update(is_active=True)
     if rows_updated == 1:
-    	message_bit = "1 deck was"
+        message_bit = "1 deck was"
     else:
         message_bit = "%s decks were" % rows_updated
-    self.message_user(request, "%s successfully marked as active.") % message_bit
-push_live.short_description = "Mark select Decks as active
+    modeladmin.message_user(request, "%s successfully marked as active." % message_bit)
+
+push_live.short_description = "Mark selected Decks as active"
 ```
