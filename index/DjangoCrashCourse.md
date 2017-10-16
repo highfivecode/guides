@@ -804,7 +804,7 @@ Class DeckAdmin(admin.ModelAdmin):
 ```python
 Class DeckAdmin(admin.ModelAdmin):
     list_display=('title', 'is_active', 'get_number_of_cards_as_str')
-    list_filter=('is_active')
+    list_filter=('is_active',)
 ```
 
 7. Finally lets add a search field, so the user can search for a record if we have a lot of Card or Deck records. We will use the [search_fields option](https://docs.djangoproject.com/en/1.11/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields)
@@ -813,6 +813,6 @@ Class DeckAdmin(admin.ModelAdmin):
 ```python
 Class DeckAdmin(admin.ModelAdmin):
     list_display=('title', 'is_active', 'get_number_of_cards_as_str')
-    list_filter=('is_active')
+    list_filter=('is_active',)
     search_fields = ['title', 'description']
 ```
