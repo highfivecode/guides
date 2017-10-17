@@ -23,7 +23,7 @@
   $ rmdir aNewDirectory
   ```
  
-## cd
+### cd
   - Change directory. Will change to home directory if no directory name is provided. Otherwise changes to specified directory.
   ```shell
   $ cd
