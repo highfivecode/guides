@@ -863,7 +863,7 @@ push_live.short_description = "Mark selected Decks as active"
 
 ### Creating A Form
 [back to top](#django-crash-course-quick-reference)  
-[watch video]()  
+[watch video 1](https://youtu.be/4Ry5Hb0HSas)  
 
 Django has a powerful way of handling forms for us. But first we will create our own HTML form to get an introduction to the form process. [docs on forms](https://www.w3schools.com/html/html_forms.asp).
 
