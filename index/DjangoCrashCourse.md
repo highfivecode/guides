@@ -36,6 +36,7 @@
 14. [The Django Admin Panel](#the-django-admin-panel)  
 15. [Admin Panel Options](#admin-panel-options)  
 16. [Admin Panel Actions](#admin-panel-actions)  
+17. [Creating A Form](#creating-a-form)  
 
 
 ### Workspace Setup 
@@ -859,3 +860,59 @@ def push_live(modeladmin, request, queryset):
 
 push_live.short_description = "Mark selected Decks as active"
 ```
+
+### Creating A Form
+[back to top](#django-crash-course-quick-reference)  
+[watch video]()  
+
+Django has a powerful way of handling forms for us. But first we will create our own HTML form to get an introduction to the form process. [docs on forms](https://www.w3schools.com/html/html_forms.asp).
+
+>IMPORTANT: We normally use one of two types of requests when dealing with forms. GET and POST requests. GET requests add the parameters to the url, this is good for searching, redirecting, and creating shareable urls. POST requests send the data discreetly to the server, this is good for dealing with sensitive data such as usernames and passwords. [click here for more information](https://www.w3schools.com/TAgs/ref_httpmethods.asp)
+
+First, lets create a new url-view-template in the flashcards app that we will use to create new Decks.
+
+**flashcards/urls.py**
+```pytchon
+urlpatterns = [
+    url(r'^$', views.home, name='home'),
+    url(r'decks/create', views.createDeck, name='createDeck')
+]
+```
+
+**flashcards/views.py**
+```python
+def createDeck(request):
+    '''
+    Renders a template used to accept POST requests 
+    to create a new Deck
+    '''
+    if request.method == 'POST':
+        print('*******************')
+        print(request.POST)
+        print('*******************
+    context = {}
+    return render(request, 'flashcards/createCard.html', context)
+```
+
+**flashcards/templates/flashcards/createDeck.html**
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST">
+  {% csrf_token %}
+<input type="text" name="input1"/>
+<button type='submit'>Submit</button>
+</form>
+{% endblock %}
+```
+
+>IMPORTANT: Notice the csrf_token tag? CSRF stands for cross site request forgery. It is an attack in which an attacker would create their own form and their computer and direct it to submit to our server. THIS IS BAD! the csrf_token generates a unique token which Django uses to verify the post submission origininated from our applications.
+
+Now run your server, navigate to localhost:8000/flashcards/decks/create, type something into the text input, and submit the form. If you look at your server terminal window, you will see something similar to the following:
+
+```python
+<QueryDict: {'csrfmiddlewaretoken': ['u2zi591l5YufP6FB7cImyRj3tnfa36hOHSWMgrZxHOUhqIJnTtMHqK2mP9OoCjBI'], 'input1': ['asdasd']}>
+```
+
+That is the result of the form that we printed out from our view. You can see the unique CSRF token that was genereated (csrfmiddlewaretoken) and the value of the form input field we gave the name 'input1' to.
