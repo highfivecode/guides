@@ -939,23 +939,21 @@ Is Active? <input type='checkbox' name='form_is_active'><br>
 ```python
 def createDeck(request):
     '''
-    Renders a template used to accept POST requests 
-    to create a new Deck
+    Renders the form to add new decks to the database
     '''
     if request.method == 'POST':
-        # first use request.POST.get('keyName', None) to create
-	# variables with values mapping to the post field name
         title_input = request.POST.get('form_title', None)
-	description_input = request.POST.get('form_description', None)
-	is_active_input = request.POST.get('form_is_active', None)
-	# then create a new deck with the created variables as the inputs
-	new_deck = Deck(
-	                title=title_input,
-			description=description_input,
-			is_active=is_active_input
-			)
-	# finally save the deck
-	new_deck.save()
+        description_input = request.POST.get('form_description', None)
+        if 'form_is_active' in request.POST:
+            is_active_input = True
+        else:
+            is_active_input = False
+        new_deck = Deck(
+                        title=title_input,
+                        description=description_input,
+                        is_active=is_active_input)
+        new_deck.save()
+        print('************ NEW DECK SAVED ****************')
     context = {}
-    return render(request, 'flashcards/createCard.html', context)
+    return render(request, 'flashcards/createDeck.html', context)
 ```
