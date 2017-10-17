@@ -889,7 +889,7 @@ def createDeck(request):
     if request.method == 'POST':
         print('*******************')
         print(request.POST)
-        print('*******************
+        print('*******************')
     context = {}
     return render(request, 'flashcards/createCard.html', context)
 ```
