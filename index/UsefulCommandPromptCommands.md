@@ -1,5 +1,5 @@
 [Back to Guides](../README.md)
-# Useful Bash Commands
+# Useful Command Prompt Commands
 
 ### DIR
   - Lists information about the files in the current directory
