@@ -916,3 +916,45 @@ Now run your server, navigate to localhost:8000/flashcards/decks/create, type so
 ```
 
 That is the result of the form that we printed out from our view. You can see the unique CSRF token that was genereated (csrfmiddlewaretoken) and the value of the form input field we gave the name 'input1' to.
+
+Now lets finish our form and actually save the information to the database. Our url is done, we only have to do some changes in the template to add the new fields and write the logic in the view to capture the post data and save it.
+
+**flashcards/templates/flashcards/createDeck.html**
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" name="form_title"/><br>
+  <input type="text" name="form_description"/><br>
+  <input type="checkbox" name="form_is_active"><br>
+  <button type='submit'>Submit</button>
+</form>
+{% endblock %}
+```
+
+**flashcards/views.py**
+```python
+def createDeck(request):
+    '''
+    Renders a template used to accept POST requests 
+    to create a new Deck
+    '''
+    if request.method == 'POST':
+        # first use request.POST.get('keyName', None) to create
+	# variables with values mapping to the post field name
+        title_input = request.POST.get('form_title', None)
+	description_input = request.POST.get('form_description', None)
+	is_active_input = request.POST.get('form_is_active', None)
+	# then create a new deck with the created variables as the inputs
+	new_deck = Deck(
+	                title=title_input,
+			description=description_input,
+			is_active=is_active_input
+			)
+	# finally save the deck
+	new_deck.save()
+    context = {}
+    return render(request, 'flashcards/createCard.html', context)
+```
