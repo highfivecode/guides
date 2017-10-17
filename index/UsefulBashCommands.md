@@ -52,16 +52,22 @@
   ```
   
 ### pwd
-  - DIsplays the name of the current directory
+  - Displays the name of the current directory
   ```
   $ pwd
   ```
   
 ### head
   - Displays the first 10 lines of a file
+  ```shell
+  $ head aNewFile.txt
+  ```
   
 ### tail
   - Displays the last 10 lines of a file
+  ```shell
+  $ tail aNewFile.txt
+  ```
   
 ### cp
   - Copy specified file to a new specified file
