@@ -926,12 +926,13 @@ Now lets finish our form and actually save the information to the database. Our 
 {% block content %}
 <form method="POST">
   {% csrf_token %}
-  <input type="text" name="form_title"/><br>
-  <input type="text" name="form_description"/><br>
-  <input type="checkbox" name="form_is_active"><br>
-  <button type='submit'>Submit</button>
+Title: <input type='text' name="form_title"><br>
+Description: <input type='text' name="form_description"><br>
+Is Active? <input type='checkbox' name='form_is_active'><br>
+<input type="submit" value="Submit Form">
 </form>
 {% endblock %}
+
 ```
 
 **flashcards/views.py**
