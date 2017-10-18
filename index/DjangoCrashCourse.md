@@ -18,7 +18,9 @@
 [Template Language](https://docs.djangoproject.com/en/1.11/topics/templates/#the-django-template-language)
   * [Templating Tags Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-tags)
   * [Templating Filter Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-filters)
- 
+  
+[Working With Forms](https://docs.djangoproject.com/en/1.11/topics/forms/#working-with-form-templates)  
+
 ## Table Of Contents
 
 1. [Workspace Setup](#workspace-setup)
@@ -963,7 +965,7 @@ def createDeck(request):
 
 ### Model Forms
 [back to top](#django-crash-course-quick-reference)  
-[watch video]()  
+[watch video](https://youtu.be/Wwjxa7XicOs)  
 
 Creating our own forms using html and processing the post in our view is always an option. However, it becomes repetitive when we have forms with fields that map closely to our models. Thankfully django provides us the ModelForm class. This is handy because it allows django to validate the form before it is saved to the database and it simplifies our HTML templates.
 
@@ -994,19 +996,15 @@ def createDeck(request):
     Renders the form to add new decks to the database
     '''
     if request.method == 'POST':
-        # create form instance and populate with data from request (what was submitted)
-	form = DeckForm(request.POST)
-	# check if form is valid
-	if form.is_valid( ):
-		# save form's data to the database
-		form.save()
-		# clear the form
-		form = CardForm()
-    # if this is a GET or any other method (e.g., first request to create new card) 
-    # create default form instance
+        # create the form isntance, and populate with data from the request
+        form = DeckForm(request.POST)
+        # check if the form is valid
+        if form.is_valid():
+            #save the form, this saves the object to the database
+            form.save()
     else:
-        form = DeckForm( )
-    context = {'form':form}
+        form = DeckForm()
+    context = {'form': form}
     return render(request, 'flashcards/createDeck.html', context)
 ```
 
