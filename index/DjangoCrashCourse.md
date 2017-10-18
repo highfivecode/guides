@@ -11,6 +11,7 @@
 [Managers (Querysets)](https://docs.djangoproject.com/en/1.11/topics/db/managers/)  
 [Migrations](https://docs.djangoproject.com/en/1.11/topics/migrations/)  
 [Model Fields](https://docs.djangoproject.com/en/1.11/ref/models/fields/)  
+[Model Forms](https://docs.djangoproject.com/en/1.11/topics/forms/modelforms/)  
 [QuerySets](https://docs.djangoproject.com/en/1.11/ref/models/querysets/)  
 [QuerySet API](https://docs.djangoproject.com/en/1.11/ref/models/querysets)  
 [Templates](https://docs.djangoproject.com/en/1.11/topics/templates/)  
@@ -37,6 +38,7 @@
 15. [Admin Panel Options](#admin-panel-options)  
 16. [Admin Panel Actions](#admin-panel-actions)  
 17. [Creating A Form](#creating-a-form)  
+18. [Model Forms](#model-forms)  
 
 
 ### Workspace Setup 
@@ -957,4 +959,70 @@ def createDeck(request):
         print('************ NEW DECK SAVED ****************')
     context = {}
     return render(request, 'flashcards/createDeck.html', context)
+```
+
+### Model Forms
+[back to top](#django-crash-course-quick-reference)  
+[watch video]()  
+
+Creating our own forms using html and processing the post in our view is always an option. However, it becomes repetitive when we have forms with fields that map closely to our models. Thankfully django provides us the ModelForm class. This is handy because it allows django to validate the form before it is saved to the database and it simplifies our HTML templates.
+
+First let's create a new file called "forms.py" in our flashcards app to house our new Django driven ModelForm.
+
+**flashcards/forms.py**
+```python
+from django.forms import ModelForm
+from .models import Deck
+
+class DeckForm(ModelForm):
+   '''
+   Form mapping to the Deck model
+   '''
+   class Meta:
+       model = Deck
+       fields = ['title', 'description', 'is_active']
+```
+
+Now we can refactor our view to use the new form:
+
+**flashcards/views.py**
+```python
+from .forms import DeckForm
+
+def createDeck(request):
+    '''
+    Renders the form to add new decks to the database
+    '''
+    if request.method == 'POST':
+        # create form instance and populate with data from request (what was submitted)
+	form = DeckForm(request.POST)
+	# check if form is valid
+	if form.is_valid( ):
+		# save form's data to the database
+		form.save()
+		# clear the form
+		form = CardForm()
+    # if this is a GET or any other method (e.g., first request to create new card) 
+    # create default form instance
+    else:
+        form = DeckForm( )
+    context = {'form':form}
+    return render(request, 'flashcards/createDeck.html', context)
+```
+
+Now we finally make some changes to our template to use the new "form" variable we passed into the template (using the context in the view).
+
+**flashcards/templates/flashcards/createDeck.html**
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST">
+  {% csrf_token %}
+  <table>
+     {{ form.as_table }}
+  </table>
+  <input type="submit" value="Submit" />
+</form>
+{% endblock %}
 ```
