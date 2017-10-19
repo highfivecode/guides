@@ -1060,7 +1060,7 @@ urlpatterns = [
 ]
 ```
 
-Now that "named group" can be access in the corresponding view but passing the name as an argument:
+Now that "named group" can be access in the corresponding view by passing the name as an argument:
 
 **flashcards/views.py**
 ```python
