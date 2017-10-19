@@ -20,6 +20,7 @@
   * [Templating Filter Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-filters)
   
 [Working With Forms](https://docs.djangoproject.com/en/1.11/topics/forms/#working-with-form-templates)  
+[URL Dispatcher](https://docs.djangoproject.com/en/1.11/topics/http/urls/)  
 
 ## Table Of Contents
 
@@ -41,7 +42,7 @@
 16. [Admin Panel Actions](#admin-panel-actions)  
 17. [Creating A Form](#creating-a-form)  
 18. [Model Forms](#model-forms)  
-
+19. [URL Dispatcher and Named Groups](#url-dispatcher-and-named-groups)  
 
 ### Workspace Setup 
 [back to top](#django-crash-course-quick-reference)  
@@ -1042,4 +1043,46 @@ from django.shortcuts import (
         HttpResponseRedirect,
         render,
     )
+```
+
+### URL Dispatcher and Named Groups
+[back to top](#django-crash-course-quick-reference)  
+[watch video]()  
+
+We should also create a way to edit Decks, otherwise the users can change the status of the decks from inactive to active (or vice versa). They also may want to edit the title or description later. This creates a unique challenge in that we first have to "get" the individual deck object from the database. To get the deck from the database we need some type of "lookup" field to search the database for. For this we will use the id of the deck object and we will pass it from the url to the view using a "[named group](https://docs.djangoproject.com/en/1.11/topics/http/urls/#named-groups)".
+
+**flashcards/urls.py**
+```python
+urlpatterns = [
+    url(r'^$', views.home, name='home'),
+    url(r'decks/create/', views.createDeck, name='createDeck'),
+    url(r'decks/edit/?P(<deck_id>[\d]+)', views.editDeck, name='editDeck'),
+]
+```
+
+Now that "named group" can be access in the corresponding view but passing the name as an argument:
+
+**flashcards/views.py**
+```python
+def editDeck(request, deck_id):
+```
+
+Now lets finish the view, it will be VERY similar to the createDeck view. The only difference will be that we will get the object from the database using [get_object_or_404](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#get-object-or-404) and then passing it into the form using the "instance" keyword argument. We can even use the same template!
+
+**flashcards/views.py**
+```python
+def editDeck(request, deck_id):
+	'''
+	Renders a form allowing a user to edit a card
+	'''
+	deck = get_object_or_404(Deck, id=deck_id)
+	if request.method == 'POST':
+		form = DeckForm(request.POST, instance=deck)
+		if form.is_valid( ):
+			form.save( )
+			return HttpResponseRedirect('/flashcards')
+	else:
+		form = DeckForm(instance=deck)
+	context = {'form': form,}
+	return render(request, 'flashcards/createDeck.html', context)
 ```
