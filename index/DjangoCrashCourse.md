@@ -43,6 +43,7 @@
 17. [Creating A Form](#creating-a-form)  
 18. [Model Forms](#model-forms)  
 19. [Dynamic Url Parameters and Editing ModelForms](#dynamic-url-parameters-and-editing-modelforms)  
+20. [Using A View To Delete An Object](#using-a-view-to-delete-an-object)  
 
 ### Workspace Setup 
 [back to top](#django-crash-course-quick-reference)  
@@ -1089,6 +1090,7 @@ def editDeck(request, deck_id):
 	context = {'form': form,}
 	return render(request, 'flashcards/createDeck.html', context)
 ```
+
 Finally we can add a link to edit the decks from the flashcards home page.
 
 **flashcards/templates/flashcards/home.html**
@@ -1096,4 +1098,78 @@ Finally we can add a link to edit the decks from the flashcards home page.
 {% for deck in decks %}
     <li>{{deck.title}} - <a href="{% url 'flashcards:editDeck' deck.id %}"> edit </a></li>
 {% endfor %}
+```
+### Using A View To Delete An Object
+[back to top](#django-crash-course-quick-reference)  
+[watch video]()
+
+Deleting an object using a view is as simple as retrieving the object from the database and then calling the delete method on it. 
+
+First lets create a new url to handle deleting decks:
+
+**flashcards/urls.py**
+```python
+urlpatterns = [
+    url(r'^$', views.home, name='home'),
+    url(r'decks/create/', views.createDeck, name='createDeck'),
+    url(r'decks/edit/(?P<deck_id>[\d]+)', views.editDeck, name='editDeck'),
+    url(r'decks/delete/(?P<deck_id>[\d]+)', views.deleteDeck, name='deleteDeck'),
+]
+```
+
+Notice we are using a named group again, this is how we will get the deck_id in the view in order to retrieve a specific deck from the database.
+
+**flashcards/views.py**
+```python
+def deleteDeck(request, deck_id):
+    '''
+    Deletes deck whose id == deck_id from the database
+    '''
+    deck = get_object_or_404(Deck, id=deck_id)
+    deck.delete()
+    return HttpResponseRedirect('/flashcards')
+```
+
+Notice the above view does not render a template. Instead we will create a button in the template that renders the form to add/edit the deck and have the button call this view. First lets rename the createDeck.html to a more suitable name createOrEditDeck.html and add the button if we are in the "edit mode" only.
+
+**flashcards/templates/flashcards/createOrEditDeck.html**
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+  <form method="POST">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+  <input type="submit" value="Submit Form">
+  </form>
+  {% if edit_mode %}
+    Do you want to delete this Deck?
+      <a href='{% url "flashcards:deleteDeck" deck.id %}'>Delete This Deck</a>
+  {% endif %}
+{% endblock %}
+```
+
+Notice we are now referencing two new variables in the template: edit_mode and deck. Because we only want to see this button while we are editing, we can simply pass use the editDeck view to pass these variables to the template context:
+
+**flashcards/views.py**
+```python
+def editDeck(request, deck_id):
+    '''
+    Renders the form to edit information about a deck object
+    '''
+    deck_obj = get_object_or_404(Deck, id=deck_id)
+    if request.method == 'POST':
+        # create the form isntance, and populate with data from the request
+        form = DeckForm(request.POST, instance=deck_obj)
+        # check if the form is valid
+        if form.is_valid():
+            #save the form, this saves the object to the database
+            form.save()
+            return HttpResponseRedirect('/flashcards')
+    else:
+        form = DeckForm(instance=deck_obj)
+    context = {'form': form, 'deck':deck_obj, 'edit_mode':True}
+    return render(request, 'flashcards/createDeck.html', context)
 ```
