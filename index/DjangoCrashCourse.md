@@ -965,7 +965,8 @@ def createDeck(request):
 
 ### Model Forms
 [back to top](#django-crash-course-quick-reference)  
-[watch video](https://youtu.be/Wwjxa7XicOs)  
+[watch video 1](https://youtu.be/Wwjxa7XicOs)  
+[watch video 2](https://youtu.be/OafjU5BtJRI)
 
 Creating our own forms using html and processing the post in our view is always an option. However, it becomes repetitive when we have forms with fields that map closely to our models. Thankfully django provides us the ModelForm class. This is handy because it allows django to validate the form before it is saved to the database and it simplifies our HTML templates.
 
@@ -1023,4 +1024,22 @@ Now we finally make some changes to our template to use the new "form" variable 
   <input type="submit" value="Submit" />
 </form>
 {% endblock %}
+```
+
+Finally let's edit our view so it redirects the user back to the flashcards home page. 
+In the createDeck view add the following line just below the deck.save():
+
+**flashcards/views.py**
+```python
+	    return HttpResponseRedirect('/flashcards')
+```
+
+and make sure to import it at the top of the file. 
+
+**flashcards/views.py**
+```python
+from django.shortcuts import (
+        HttpResponseRedirect,
+        render,
+    )
 ```
