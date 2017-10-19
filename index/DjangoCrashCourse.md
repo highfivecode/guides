@@ -878,7 +878,7 @@ Django has a powerful way of handling forms for us. But first we will create our
 First, lets create a new url-view-template in the flashcards app that we will use to create new Decks.
 
 **flashcards/urls.py**
-```pytchon
+```python
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'decks/create', views.createDeck, name='createDeck')
@@ -1047,7 +1047,7 @@ from django.shortcuts import (
 
 ### Dynamic Url Parameters and Editing ModelForms
 [back to top](#django-crash-course-quick-reference)  
-[watch video]()  
+[watch video](https://youtu.be/wowu8vmPNI0)  
 
 We should also create a way to edit Decks, otherwise the users can change the status of the decks from inactive to active (or vice versa). They also may want to edit the title or description later. This creates a unique challenge in that we first have to "get" the individual deck object from the database. To get the deck from the database we need some type of "lookup" field to search the database for. For this we will use the id of the deck object and we will pass it from the url to the view using a "[named group](https://docs.djangoproject.com/en/1.11/topics/http/urls/#named-groups)".
 
@@ -1068,6 +1068,9 @@ def editDeck(request, deck_id):
 ```
 
 Now lets finish the view, it will be VERY similar to the createDeck view. The only difference will be that we will get the object from the database using [get_object_or_404](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#get-object-or-404) and then passing it into the form using the "instance" keyword argument. We can even use the same template!
+
+
+> IMPORTANT: make sure to import get_object_or_404 from django.shortcuts.
 
 **flashcards/views.py**
 ```python
