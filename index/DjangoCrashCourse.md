@@ -42,7 +42,7 @@
 16. [Admin Panel Actions](#admin-panel-actions)  
 17. [Creating A Form](#creating-a-form)  
 18. [Model Forms](#model-forms)  
-19. [URL Dispatcher and Named Groups](#url-dispatcher-and-named-groups)  
+19. [Dynamic Url Parameters and Editing ModelForms](#dynamic-url-paremters-and-editing-modelforms)  
 
 ### Workspace Setup 
 [back to top](#django-crash-course-quick-reference)  
@@ -1045,7 +1045,7 @@ from django.shortcuts import (
     )
 ```
 
-### URL Dispatcher and Named Groups
+### Dynamic Url Parameters and Editing ModelForms
 [back to top](#django-crash-course-quick-reference)  
 [watch video]()  
 
