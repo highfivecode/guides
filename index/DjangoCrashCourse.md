@@ -42,7 +42,7 @@
 16. [Admin Panel Actions](#admin-panel-actions)  
 17. [Creating A Form](#creating-a-form)  
 18. [Model Forms](#model-forms)  
-19. [Dynamic Url Parameters and Editing ModelForms](#dynamic-url-paremters-and-editing-modelforms)  
+19. [Dynamic Url Parameters and Editing ModelForms](#dynamic-url-parameters-and-editing-modelforms)  
 
 ### Workspace Setup 
 [back to top](#django-crash-course-quick-reference)  
