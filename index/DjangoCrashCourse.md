@@ -1101,7 +1101,7 @@ Finally we can add a link to edit the decks from the flashcards home page.
 ```
 ### Using A View To Delete An Object
 [back to top](#django-crash-course-quick-reference)  
-[watch video]()
+[watch video](https://youtu.be/h0TK8JstlGc)
 
 Deleting an object using a view is as simple as retrieving the object from the database and then calling the delete method on it. 
 
@@ -1123,31 +1123,33 @@ Notice we are using a named group again, this is how we will get the deck_id in 
 ```python
 def deleteDeck(request, deck_id):
     '''
-    Deletes deck whose id == deck_id from the database
+    Deletes the deck whose id == deck_id
     '''
-    deck = get_object_or_404(Deck, id=deck_id)
-    deck.delete()
+    deck_obj = get_object_or_404(Deck, id=deck_id)
+    deck_obj.delete()
     return HttpResponseRedirect('/flashcards')
 ```
 
-Notice the above view does not render a template. Instead we will create a button in the template that renders the form to add/edit the deck and have the button call this view. First lets rename the createDeck.html to a more suitable name createOrEditDeck.html and add the button if we are in the "edit mode" only.
+Notice the above view does not render a template. Instead we will create a button in the template that renders the form to add/edit the deck and have the button call this view. First lets rename the createDeck.html to a more suitable name createAndEditDeck.html and add the button if we are in the "edit mode" only.
 
-**flashcards/templates/flashcards/createOrEditDeck.html**
+**flashcards/templates/flashcards/createAndEditDeck.html**
 ```html
 {% extends 'base.html' %}
 
 {% block content %}
-  <form method="POST">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
-  <input type="submit" value="Submit Form">
-  </form>
-  {% if edit_mode %}
-    Do you want to delete this Deck?
-      <a href='{% url "flashcards:deleteDeck" deck.id %}'>Delete This Deck</a>
-  {% endif %}
+<form method="POST">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+<input type="submit" value="Submit Form">
+</form>
+
+{% if edit_mode %}
+  <p>Do you want to delete this deck?</p>
+  <a href="{% url 'flashcards:deleteDeck' deck_obj.id %}"> Delete This Deck</a>
+{% endif %}
+
 {% endblock %}
 ```
 
@@ -1170,6 +1172,6 @@ def editDeck(request, deck_id):
             return HttpResponseRedirect('/flashcards')
     else:
         form = DeckForm(instance=deck_obj)
-    context = {'form': form, 'deck':deck_obj, 'edit_mode':True}
-    return render(request, 'flashcards/createDeck.html', context)
+    context = {'form': form, 'edit_mode':True, 'deck_obj':deck_obj}
+    return render(request, 'flashcards/createAndEditDeck.html', context)
 ```
