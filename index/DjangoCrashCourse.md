@@ -1086,3 +1086,11 @@ def editDeck(request, deck_id):
 	context = {'form': form,}
 	return render(request, 'flashcards/createDeck.html', context)
 ```
+Finally we can add a link to edit the decks from the flashcards home page.
+
+**flashcards/templates/flashcards/home.html**
+```html
+{% for deck in decks %}
+    <li>{{deck.title}} - <a href="{% url 'flashcards:editDeck' deck.id %}"> edit </a></li>
+{% endfor %}
+```
