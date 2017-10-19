@@ -1075,14 +1075,14 @@ def editDeck(request, deck_id):
 	'''
 	Renders a form allowing a user to edit a card
 	'''
-	deck = get_object_or_404(Deck, id=deck_id)
+	deck_obj = get_object_or_404(Deck, id=deck_id)
 	if request.method == 'POST':
-		form = DeckForm(request.POST, instance=deck)
+		form = DeckForm(request.POST, instance=deck_obj)
 		if form.is_valid( ):
 			form.save( )
 			return HttpResponseRedirect('/flashcards')
 	else:
-		form = DeckForm(instance=deck)
+		form = DeckForm(instance=deck_obj)
 	context = {'form': form,}
 	return render(request, 'flashcards/createDeck.html', context)
 ```
