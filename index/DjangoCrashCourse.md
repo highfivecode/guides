@@ -1225,7 +1225,7 @@ class CardTestCase(TestCase):
 
 2. Now we want to set up our testing fixture. This will create a new empty testing database and thus we need to create new deck and card objects in the testing database. We do this using the setUp() method.
 
-**flashcards/test.py**
+**flashcards/tests.py**
 ```python
 def setUp(self):
         '''
@@ -1252,7 +1252,7 @@ def setUp(self):
 
 3. Now lets create our first test case. Our test cases will be methods with names starting with "test_", for example: "test_some_custom_test".
 
-**flashcards/test.py**
+**flashcards/tests.py**
 ```python
 def test_starting_conditions(self):
         '''
@@ -1270,3 +1270,36 @@ def test_starting_conditions(self):
 $ python manage.py test
 ```
       
+#### PART 2
+
+Now lets write our first test that we know is going to fail.
+
+**flashcards/tests.py**
+```python
+def test_has_prev_card(self):
+	'''
+	The first card in the deck does not have a previous card.
+	The last card in the deck does not have a next card.
+	'''
+        self.assertFalse(self.card1.has_prev_card())
+        self.assertTrue(self.card2.has_prev_card())
+        self.assertTrue(self.card3.has_prev_card())
+```
+
+If we run our test, it fails. Well of course it fails, we haven't even written the has_prev_card() method in the Card model yet! So lets do that.
+
+**flashcards/models.py
+```python
+class Card(models.Model):
+	<snipped for brevity>
+	
+def has_prev_card(self):
+		'''
+		Returns False is card is the first card in the deck, false otherwise
+		'''
+		parent_deck = self.deckset
+		first_card_in_deck = parent_deck.get_first_card()
+		if self == first_card_in_deck:
+			return False
+		return True
+```
