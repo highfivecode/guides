@@ -47,7 +47,7 @@
 19. [Dynamic Url Parameters and Editing ModelForms](#dynamic-url-parameters-and-editing-modelforms)  
 20. [Using A View To Delete An Object](#using-a-view-to-delete-an-object)  
 21. [Using Named Urls In Views](#using-named-urls-in-views)  
-22. [Introducting To Automated Tests](#introduction-to-automated-tests)  
+22. [Introduction To Automated Tests](#introduction-to-automated-tests)  
 
 ### Workspace Setup 
 [back to top](#django-crash-course-quick-reference)  
