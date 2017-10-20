@@ -1255,13 +1255,13 @@ def setUp(self):
 **flashcards/test.py**
 ```python
 def test_starting_conditions(self):
-   '''
-   Check deck and cards exist
-   '''
-   # deck
-   self.assertIsInstance(self.deck, Deck)
-   # card 1
-   self.assertIsInstance(self.card1, Card)
+        '''
+        Check if deck and cards exists
+        '''
+        self.assertIsInstance(self.deck, Deck)
+        self.assertIsInstance(self.card1, Card)
+        self.assertIsInstance(self.card2, Card)
+        self.assertIsInstance(self.card3, Card)
 ```
 
 4. So far our tests.py looks like: [source here](https://github.com/highfivecode/DjangoCrashCourse/blob/af2f3117a5c7d4e492a1096481bcb5fc8533b28d/flashcards/tests.py). Finally, we can run all these tests using manage.py
