@@ -1178,7 +1178,7 @@ def editDeck(request, deck_id):
 ```
 ### Using Named Urls In Views
 [back to top](#django-crash-course-quick-reference)  
-[watch video]()
+[watch video](https://youtu.be/Aj0BFPhZXWo)
 
 We know the url template tag allows us to use the named urls ({% url 'name' %} or {% url 'namespace:name' %}) and even pass arguments to the urls. It would be nice to have the same functionality in views. Right now, everytime we redirect the user using HttpResponseRedirect we harcode a url. Hardcoding is bad because if we change our url patterns in the future we would then have to go a change every hardcoded url. This is primary reason we use the url template tag in templates.
 
