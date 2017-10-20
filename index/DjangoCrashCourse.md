@@ -19,6 +19,8 @@
   * [Templating Tags Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-tags)
   * [Templating Filter Reference](https://docs.djangoproject.com/en/1.11/ref/templates/builtins/#ref-templates-builtins-filters)
   
+[Testing In Django](https://docs.djangoproject.com/en/1.11/topics/testing/)  
+[Unit Testing In Python](https://docs.python.org/2/library/unittest.html)  
 [Working With Forms](https://docs.djangoproject.com/en/1.11/topics/forms/#working-with-form-templates)  
 [URL Dispatcher](https://docs.djangoproject.com/en/1.11/topics/http/urls/)  
 
@@ -45,6 +47,7 @@
 19. [Dynamic Url Parameters and Editing ModelForms](#dynamic-url-parameters-and-editing-modelforms)  
 20. [Using A View To Delete An Object](#using-a-view-to-delete-an-object)  
 21. [Using Named Urls In Views](#using-named-urls-in-views)  
+22. [Introducting To Automated Tests](#introduction-to-automated-tests)  
 
 ### Workspace Setup 
 [back to top](#django-crash-course-quick-reference)  
@@ -1197,3 +1200,73 @@ If the URL accepts arguments, you may pass them in args. For example:
 from django.urls import reverse
 return HttpResponseRedirect(reverse('flashcards:viewDeck', args=[10]))
 ```
+
+### Introduction To Automated Testing
+[back to top](#django-crash-course-quick-reference)  
+[watch video]()
+
+Testing is a big topic. Testing a web application is a huge topic. There are many layers of an web app that could be tested: HTTP-level request handling, form validation and processing, template rendering, model logic, etc. There is even a software development process where programmers write tests for their code before they even write their code called [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development). Ultimately, testing is vital to production level development and it is something you should have some exposure to. 
+
+While the testing could be an entire course in itself, we will focus on just a basic introduction. We will use test-driven development to write tests that will verify our flashcard navigation functionality is working correctly.
+
+1. First open flashcards/tests.py. This is where we will put our tests. We will define a class called CardTestCase that subclasses django's built in TestCase class. Then we will define some variables and set them to None. 
+
+**flashcards/tests.py**
+```python
+from django.test import TestCase
+from .models import Card
+
+class CardTestCase(TestCase):
+    deck = None
+    card1 = None
+    card2 = None
+    card3 = None
+```
+
+2. Now we want to set up our testing fixture. This will create a new empty testing database and thus we need to create new deck and card objects in the testing database. We do this using the setUp() method.
+
+**flashcards/test.py**
+```python
+def setUp(self):
+        '''
+        Sets up our testing fixture and creates objects
+        which we can use in following tests
+        '''
+        self.deck = Deck.objects.create(title='test_deck_1')
+        self.card1 = Card.objects.create(
+                                            parentDeck = self.deck,
+                                            front = 'front of card1',
+                                            back = 'back of card1'
+                                        )
+        self.card2 = Card.objects.create(
+                                            parentDeck = self.deck,
+                                            front = 'front of card2',
+                                            back = 'back of card2'
+                                        )
+        self.card3 = Card.objects.create(
+                                            parentDeck = self.deck,
+                                            front = 'front of card3',
+                                            back = 'back of card3'
+                                        )
+```
+
+3. Now lets create our first test case. Our test cases will be methods with names starting with "test_", for example: "test_some_custom_test".
+
+**flashcards/test.py**
+```python
+def test_starting_conditions(self):
+   '''
+   Check deck and cards exist
+   '''
+   # deck
+   self.assertIsInstance(self.deck, Deck)
+   # card 1
+   self.assertIsInstance(self.card1, Card)
+```
+
+4. Finally, we can run all these tests using manage.py
+
+```shell
+$ python manage.py test
+```
+      
