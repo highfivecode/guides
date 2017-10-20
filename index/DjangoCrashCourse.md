@@ -1204,6 +1204,7 @@ return HttpResponseRedirect(reverse('flashcards:viewDeck', args=[10]))
 ### Introduction To Automated Testing
 [back to top](#django-crash-course-quick-reference)  
 [watch video 1](https://youtu.be/UvQLp6F42ec)
+[watch video 2](https://youtu.be/l4ZdslbnFjQ)
 
 Testing is a big topic. Testing a web application is a huge topic. There are many layers of an web app that could be tested: HTTP-level request handling, form validation and processing, template rendering, model logic, etc. There is even a software development process where programmers write tests for their code before they even write their code called [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development). Ultimately, testing is vital to production level development and it is something you should have some exposure to. 
 
@@ -1276,11 +1277,11 @@ Now lets write our first test that we know is going to fail.
 
 **flashcards/tests.py**
 ```python
-def test_has_prev_card(self):
-	'''
-	The first card in the deck does not have a previous card.
-	The last card in the deck does not have a next card.
-	'''
+def test_card_has_prev(self):
+        '''
+        The first card does not have a prev card.
+        All other cards do.
+        '''
         self.assertFalse(self.card1.has_prev_card())
         self.assertTrue(self.card2.has_prev_card())
         self.assertTrue(self.card3.has_prev_card())
@@ -1293,13 +1294,43 @@ If we run our test, it fails. Well of course it fails, we haven't even written t
 class Card(models.Model):
 	<snipped for brevity>
 	
-def has_prev_card(self):
-		'''
-		Returns False is card is the first card in the deck, false otherwise
-		'''
-		parent_deck = self.deckset
-		first_card_in_deck = parent_deck.get_first_card()
-		if self == first_card_in_deck:
-			return False
-		return True
+    def has_prev_card(self):
+        '''
+        Returns true if the card is not the first card
+        in the deck.
+        '''
+        first_card_in_deck = self.parentDeck.card_set.first()
+        if self == first_card_in_deck:
+            return False
+        return True
+```
+
+Now if we run our test. We see it passed! Let's finish this part by writting the test and then the code to see if a card has a next card:
+
+**flashcards/tests.py**
+```python
+    def test_card_has_next(self):
+        '''
+        The last card does not have a next card.
+        All other cards do.
+        '''
+        self.assertTrue(self.card1.has_next_card())
+        self.assertTrue(self.card2.has_next_card())
+        self.assertFalse(self.card3.has_next_card())
+```
+
+**flashcards/models.py**
+```python
+class Card(models.Model):
+	<snipped for brevity>
+	
+    def has_next_card(self):
+        '''
+        Returns true if the card is not the last card
+        in the deck
+        '''
+        last_card_in_deck = self.parentDeck.card_set.last()
+        if self == last_card_in_deck:
+            return False
+        return True
 ```
