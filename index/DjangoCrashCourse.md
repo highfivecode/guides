@@ -44,6 +44,7 @@
 18. [Model Forms](#model-forms)  
 19. [Dynamic Url Parameters and Editing ModelForms](#dynamic-url-parameters-and-editing-modelforms)  
 20. [Using A View To Delete An Object](#using-a-view-to-delete-an-object)  
+21. [Using Named Urls In Views](#using-named-urls-in-views)  
 
 ### Workspace Setup 
 [back to top](#django-crash-course-quick-reference)  
@@ -1174,4 +1175,25 @@ def editDeck(request, deck_id):
         form = DeckForm(instance=deck_obj)
     context = {'form': form, 'edit_mode':True, 'deck_obj':deck_obj}
     return render(request, 'flashcards/createAndEditDeck.html', context)
+```
+### Using Named Urls In Views
+[back to top](#django-crash-course-quick-reference)  
+[watch video]()
+
+We know the url template tag allows us to use the named urls ({% url 'name' %} or {% url 'namespace:name' %}) and even pass arguments to the urls. It would be nice to have the same functionality in views. Right now, everytime we redirect the user using HttpResponseRedirect we harcode a url. Hardcoding is bad because if we change our url patterns in the future we would then have to go a change every hardcoded url. This is primary reason we use the url template tag in templates.
+
+We can achieve the same functionality of the url template tag in a view by using the [reverse function](https://docs.djangoproject.com/en/1.11/ref/urlresolvers/#reverse).
+
+Open views.py, import reverse from django.urls, then change all hardcoded HttpResponseRedirects to use the reverse url lookups. One example is given below:
+
+```python
+from django.urls import reverse
+return HttpResponseRedirect(reverse('flashcards:home'))
+```
+
+If the URL accepts arguments, you may pass them in args. For example:
+
+```python
+from django.urls import reverse
+return HttpResponseRedirect(reverse('flashcards:viewDeck', args=[10]))
 ```
