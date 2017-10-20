@@ -1205,6 +1205,8 @@ return HttpResponseRedirect(reverse('flashcards:viewDeck', args=[10]))
 [back to top](#django-crash-course-quick-reference)  
 [watch video 1](https://youtu.be/UvQLp6F42ec)  
 [watch video 2](https://youtu.be/l4ZdslbnFjQ)  
+[watch video 3](https://youtu.be/X1PnAz7gpMI)  
+[watch video 4]()  
 
 Testing is a big topic. Testing a web application is a huge topic. There are many layers of an web app that could be tested: HTTP-level request handling, form validation and processing, template rendering, model logic, etc. There is even a software development process where programmers write tests for their code before they even write their code called [test-driven development](https://en.wikipedia.org/wiki/Test-driven_development). Ultimately, testing is vital to production level development and it is something you should have some exposure to. 
 
@@ -1334,6 +1336,4 @@ class Card(models.Model):
             return False
         return True
 ```
-
-#### PART 3
 
