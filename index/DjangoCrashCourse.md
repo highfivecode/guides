@@ -1288,7 +1288,7 @@ def test_has_prev_card(self):
 
 If we run our test, it fails. Well of course it fails, we haven't even written the has_prev_card() method in the Card model yet! So lets do that.
 
-**flashcards/models.py
+**flashcards/models.py**
 ```python
 class Card(models.Model):
 	<snipped for brevity>
