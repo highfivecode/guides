@@ -1264,7 +1264,7 @@ def test_starting_conditions(self):
    self.assertIsInstance(self.card1, Card)
 ```
 
-4. Finally, we can run all these tests using manage.py
+4. So far our tests.py looks like: [source here](https://github.com/highfivecode/DjangoCrashCourse/blob/af2f3117a5c7d4e492a1096481bcb5fc8533b28d/flashcards/tests.py). Finally, we can run all these tests using manage.py
 
 ```shell
 $ python manage.py test
