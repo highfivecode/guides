@@ -3,10 +3,11 @@
 
 ##### Resources
 [AI Homepage](http://appinventor.mit.edu/explore/)
+[Downloading Emulator](http://appinventor.mit.edu/explore/ai2/setup-emulator.html)  
 
 ## Media Files
 
-1. [Dog Bark](./downloads/dog_bark.mp3)
+1. 
 
 ## Table Of Contents
 
