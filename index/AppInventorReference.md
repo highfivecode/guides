@@ -1,8 +1,8 @@
 [Back to Guides](../README.md)
-# Django Crash Course Quick Reference
+# App Inventor Course Quick Reference
 
 ##### Resources
-[AI Homepage](http://appinventor.mit.edu/explore/)
+[AI Homepage](http://appinventor.mit.edu/explore/)  
 [Downloading Emulator](http://appinventor.mit.edu/explore/ai2/setup-emulator.html)  
 
 ## Media Files
