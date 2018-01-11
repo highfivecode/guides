@@ -1,5 +1,8 @@
 # Guides
 
+### AppInventor
+  * [Quick Reference Sheet](./index/AppInventorReference.md)
+
 ### Django
   * [Quick Reference Sheet](./index/DjangoCrashCourse.md)
   * [Virtual Environment Cheat Sheet](./index/VirtualEnvCheatSheet.md)
