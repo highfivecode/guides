@@ -6,9 +6,7 @@ http://appinventor.mit.edu/explore/ai2/setup.html
 [AI Library](http://appinventor.mit.edu/explore/library.html)  
 [AI Setup](http://appinventor.mit.edu/explore/ai2/setup.html)  
 [Block Documentation](http://appinventor.mit.edu/explore/ai2/support/blocks.html)  
-[Component Documentation](http://ai2.appinventor.mit.edu/reference/components)  
-[Connecting With Wifi](http://appinventor.mit.edu/explore/ai2/setup-device-wifi.html)  
-[Downloading Emulator](http://appinventor.mit.edu/explore/ai2/setup-emulator.html)  
+[Component Documentation](http://ai2.appinventor.mit.edu/reference/components)   
 
 ##### Media Files
 
