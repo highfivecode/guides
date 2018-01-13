@@ -6,7 +6,7 @@
 [Connecting With Wifi](http://appinventor.mit.edu/explore/ai2/setup-device-wifi.html)  
 [Downloading Emulator](http://appinventor.mit.edu/explore/ai2/setup-emulator.html)  
 
-## Media Files
+##### Media Files
 
 1.
 
