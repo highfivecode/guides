@@ -1,6 +1,6 @@
 [Back to Guides](../README.md)
 # App Inventor Course Quick Reference
-http://appinventor.mit.edu/explore/ai2/setup.html
+
 ##### Resources
 [AI Homepage](http://appinventor.mit.edu/explore)  
 [AI Library](http://appinventor.mit.edu/explore/library.html)  
