@@ -8,8 +8,8 @@
 
 ## Media Files
 
-1. 
+1.
 
 ## Table Of Contents
 
-1. [Workspace Setup](#workspace-setup)
+1. [The Designer View](#the-designer-view)
