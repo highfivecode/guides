@@ -6,7 +6,8 @@
 [AI Library](http://appinventor.mit.edu/explore/library.html)  
 [AI Setup](http://appinventor.mit.edu/explore/ai2/setup.html)  
 [Block Documentation](http://appinventor.mit.edu/explore/ai2/support/blocks.html)  
-[Component Documentation](http://ai2.appinventor.mit.edu/reference/components)   
+[Component Documentation](http://ai2.appinventor.mit.edu/reference/components)  
+[AI Concept Cards](http://appinventor.mit.edu/explore/resources/beginner-app-inventor-concept-cards.html)  
 
 ##### Media Files
 
