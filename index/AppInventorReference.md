@@ -8,6 +8,7 @@
 [Block Documentation](http://appinventor.mit.edu/explore/ai2/support/blocks.html)  
 [Component Documentation](http://ai2.appinventor.mit.edu/reference/components)  
 [AI Concept Cards](http://appinventor.mit.edu/explore/resources/beginner-app-inventor-concept-cards.html)  
+[Sharing Apps](http://appinventor.mit.edu/explore/ai2/share.html)  
 
 ##### Media Files
 
