@@ -611,9 +611,9 @@ Most websites have a header and footer that remain the same on every page. As yo
 
 Django has a way around this issue for us and it is called [Template Inheritance](https://docs.djangoproject.com/en/1.11/ref/templates/language/#template-inheritance). Template inheritance allows to write a single HTML page, add a few "block" tags to it, and then reuse that template multiple times changing ONLY what is between the block tags. This is called "extending" a template.
 
-First lets create a new html in the root templates directory called base.py:
+First lets create a new html in the root templates directory called base.html:
 
-**base.py**
+**base.html**
 ```html
 {% load static %}
 <!DOCTYPE html>
